@@ -1,0 +1,723 @@
+---
+import type { ProjectPreviewVariant } from "../data/projects";
+
+interface Props {
+  variant: ProjectPreviewVariant;
+  label?: string;
+}
+
+const { variant, label } = Astro.props;
+---
+
+<div class:list={["project-preview", `project-preview--${variant}`]}>
+  {variant === "dashboard" && (
+    <div class="preview-browser">
+      <div class="preview-browser__topbar">
+        <span></span>
+        <span></span>
+        <span></span>
+        <div class="preview-browser__address"></div>
+      </div>
+
+      <div class="preview-dashboard">
+        <aside class="preview-dashboard__sidebar">
+          <div class="preview-dashboard__brand"></div>
+          <div class="preview-dashboard__nav">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </aside>
+
+        <div class="preview-dashboard__main">
+          <div class="preview-dashboard__headline">
+            <div></div>
+            <span></span>
+          </div>
+
+          <div class="preview-dashboard__stats">
+            <div>
+              <span></span>
+              <strong></strong>
+            </div>
+            <div>
+              <span></span>
+              <strong></strong>
+            </div>
+            <div>
+              <span></span>
+              <strong></strong>
+            </div>
+          </div>
+
+          <div class="preview-dashboard__content">
+            <div class="preview-dashboard__table">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="preview-dashboard__chart">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {variant === "pseo" && (
+    <div class="preview-pseo">
+      <div class="preview-pseo__toolbar">
+        <span class="preview-pseo__brand"></span>
+        <span class="preview-pseo__toggle"></span>
+        <span class="preview-pseo__toggle"></span>
+      </div>
+
+      <div class="preview-pseo__body">
+        <aside class="preview-pseo__filters">
+          <span>LOCATION</span>
+          <div></div>
+          <div></div>
+          <div></div>
+          <span>SERVICES</span>
+          <div></div>
+          <div></div>
+        </aside>
+
+        <div class="preview-pseo__canvas">
+          <div class="preview-pseo__page preview-pseo__page--main">
+            <span class="preview-pseo__city">ROOF REPAIR · PESHAWAR</span>
+            <strong></strong>
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+
+          <div class="preview-pseo__nodes">
+            <div>HVAC<br />MARDAN</div>
+            <div>PLUMBING<br />SWABI</div>
+            <div>ROOFING<br />CHARSADDA</div>
+          </div>
+
+          <div class="preview-pseo__links">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {variant === "fantivers" && (
+    <div class="preview-fantivers">
+      <div class="preview-fantivers__glow preview-fantivers__glow--one"></div>
+      <div class="preview-fantivers__glow preview-fantivers__glow--two"></div>
+
+      <div class="preview-fantivers__topbar">
+        <span>FANTIVERS</span>
+        <i></i>
+        <i></i>
+      </div>
+
+      <div class="preview-fantivers__world">
+        <div class="preview-fantivers__node preview-fantivers__node--core">
+          <span>THE<br />WORLD</span>
+        </div>
+
+        <div class="preview-fantivers__node preview-fantivers__node--one">
+          <span>STORY<br />ARC</span>
+        </div>
+
+        <div class="preview-fantivers__node preview-fantivers__node--two">
+          <span>CHARACTER<br />THREAD</span>
+        </div>
+
+        <div class="preview-fantivers__node preview-fantivers__node--three">
+          <span>LORE<br />ENTRY</span>
+        </div>
+
+        <div class="preview-fantivers__line preview-fantivers__line--one"></div>
+        <div class="preview-fantivers__line preview-fantivers__line--two"></div>
+        <div class="preview-fantivers__line preview-fantivers__line--three"></div>
+      </div>
+
+      <div class="preview-fantivers__tags">
+        <span>WORLD</span>
+        <span>STORY</span>
+        <span>CREATION</span>
+      </div>
+    </div>
+  )}
+
+  {label && <span class="project-preview__label">{label}</span>}
+</div>
+
+<style>
+  .project-preview {
+    position: relative;
+    min-height: 320px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    background: var(--surface-soft);
+  }
+
+  .project-preview__label {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 2;
+    padding: 0.48rem 0.7rem;
+    border: 1px solid rgb(255 255 255 / 14%);
+    border-radius: 999px;
+    background: rgb(16 24 38 / 82%);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+  }
+
+  /* Dashboard preview */
+
+  .project-preview--dashboard {
+    padding: 1.25rem;
+    background:
+      radial-gradient(circle at 12% 10%, rgb(167 122 59 / 16%), transparent 28%),
+      linear-gradient(150deg, #e9e2d7 0%, #f9f7f2 100%);
+  }
+
+  .preview-browser {
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid rgb(16 24 38 / 14%);
+    border-radius: 1rem;
+    background: #f8f8f7;
+    box-shadow: 0 24px 50px rgb(16 24 38 / 12%);
+  }
+
+  .preview-browser__topbar {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    height: 2.25rem;
+    padding: 0 0.75rem;
+    border-bottom: 1px solid rgb(16 24 38 / 8%);
+    background: #f0efed;
+  }
+
+  .preview-browser__topbar > span {
+    width: 0.46rem;
+    height: 0.46rem;
+    border-radius: 999px;
+    background: #c9c1b4;
+  }
+
+  .preview-browser__address {
+    width: 44%;
+    height: 0.5rem;
+    margin-left: 0.55rem;
+    border-radius: 99px;
+    background: #ddd9d1;
+  }
+
+  .preview-dashboard {
+    display: grid;
+    grid-template-columns: 24% 1fr;
+    min-height: 262px;
+  }
+
+  .preview-dashboard__sidebar {
+    padding: 1rem 0.72rem;
+    background: #152031;
+  }
+
+  .preview-dashboard__brand {
+    width: 52%;
+    height: 0.5rem;
+    margin-bottom: 1.7rem;
+    border-radius: 99px;
+    background: #d4a768;
+  }
+
+  .preview-dashboard__nav {
+    display: grid;
+    gap: 0.74rem;
+  }
+
+  .preview-dashboard__nav span {
+    display: block;
+    width: 82%;
+    height: 0.36rem;
+    border-radius: 99px;
+    background: rgb(248 245 238 / 22%);
+  }
+
+  .preview-dashboard__nav span:nth-child(2) {
+    width: 64%;
+    background: rgb(248 245 238 / 50%);
+  }
+
+  .preview-dashboard__main {
+    padding: 1rem;
+  }
+
+  .preview-dashboard__headline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .preview-dashboard__headline div {
+    width: 32%;
+    height: 0.58rem;
+    border-radius: 99px;
+    background: #1e2a3b;
+  }
+
+  .preview-dashboard__headline span {
+    width: 16%;
+    height: 0.4rem;
+    border-radius: 99px;
+    background: #ded8cd;
+  }
+
+  .preview-dashboard__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+
+  .preview-dashboard__stats div {
+    min-height: 3.5rem;
+    padding: 0.7rem;
+    border: 1px solid #e5e1d9;
+    border-radius: 0.55rem;
+    background: #fff;
+  }
+
+  .preview-dashboard__stats span,
+  .preview-dashboard__stats strong {
+    display: block;
+    border-radius: 99px;
+  }
+
+  .preview-dashboard__stats span {
+    width: 52%;
+    height: 0.28rem;
+    background: #d8d4cc;
+  }
+
+  .preview-dashboard__stats strong {
+    width: 70%;
+    height: 0.55rem;
+    margin-top: 0.58rem;
+    background: #c89a57;
+  }
+
+  .preview-dashboard__content {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 0.7rem;
+    margin-top: 0.7rem;
+  }
+
+  .preview-dashboard__table,
+  .preview-dashboard__chart {
+    min-height: 108px;
+    border: 1px solid #e5e1d9;
+    border-radius: 0.55rem;
+    background: #fff;
+  }
+
+  .preview-dashboard__table {
+    display: grid;
+    align-content: center;
+    gap: 0.55rem;
+    padding: 0.8rem;
+  }
+
+  .preview-dashboard__table span {
+    display: block;
+    height: 0.35rem;
+    border-radius: 99px;
+    background: #e5e1d9;
+  }
+
+  .preview-dashboard__table span:nth-child(2),
+  .preview-dashboard__table span:nth-child(4) {
+    width: 74%;
+  }
+
+  .preview-dashboard__chart {
+    display: flex;
+    align-items: end;
+    gap: 0.38rem;
+    padding: 0.7rem;
+  }
+
+  .preview-dashboard__chart span {
+    flex: 1;
+    border-radius: 0.25rem 0.25rem 0 0;
+    background: #839066;
+  }
+
+  .preview-dashboard__chart span:nth-child(1) { height: 38%; }
+  .preview-dashboard__chart span:nth-child(2) { height: 58%; }
+  .preview-dashboard__chart span:nth-child(3) { height: 43%; }
+  .preview-dashboard__chart span:nth-child(4) { height: 80%; }
+  .preview-dashboard__chart span:nth-child(5) { height: 64%; }
+
+  /* pSEO preview */
+
+  .project-preview--pseo {
+    padding: 1.25rem;
+    background:
+      radial-gradient(circle at 90% 10%, rgb(102 112 90 / 22%), transparent 28%),
+      linear-gradient(150deg, #f5f4ee 0%, #e4e7dd 100%);
+  }
+
+  .preview-pseo {
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid rgb(16 24 38 / 12%);
+    border-radius: 1rem;
+    background: #fbfbf7;
+    box-shadow: 0 24px 50px rgb(16 24 38 / 10%);
+  }
+
+  .preview-pseo__toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 2.4rem;
+    padding: 0 0.8rem;
+    border-bottom: 1px solid #e2e3dc;
+    background: #f1f2eb;
+  }
+
+  .preview-pseo__brand {
+    width: 28%;
+    height: 0.45rem;
+    margin-right: auto;
+    border-radius: 99px;
+    background: #617059;
+  }
+
+  .preview-pseo__toggle {
+    width: 0.85rem;
+    height: 0.85rem;
+    border-radius: 0.22rem;
+    background: #d2d7c7;
+  }
+
+  .preview-pseo__body {
+    display: grid;
+    grid-template-columns: 26% 1fr;
+    min-height: 263px;
+  }
+
+  .preview-pseo__filters {
+    display: grid;
+    align-content: start;
+    gap: 0.55rem;
+    padding: 0.9rem 0.7rem;
+    border-right: 1px solid #e5e6df;
+    background: #f5f6f0;
+  }
+
+  .preview-pseo__filters span {
+    margin-top: 0.35rem;
+    color: #64705b;
+    font-size: 0.43rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+  }
+
+  .preview-pseo__filters div {
+    height: 0.4rem;
+    border-radius: 99px;
+    background: #d9ddce;
+  }
+
+  .preview-pseo__filters div:nth-of-type(2) {
+    width: 76%;
+  }
+
+  .preview-pseo__canvas {
+    position: relative;
+    padding: 1rem;
+  }
+
+  .preview-pseo__page {
+    width: 63%;
+    padding: 0.85rem;
+    border: 1px solid #d8dccf;
+    border-radius: 0.5rem;
+    background: #fff;
+  }
+
+  .preview-pseo__city {
+    color: #68765d;
+    font-size: 0.38rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+
+  .preview-pseo__page strong,
+  .preview-pseo__page i {
+    display: block;
+    border-radius: 99px;
+  }
+
+  .preview-pseo__page strong {
+    width: 72%;
+    height: 0.54rem;
+    margin: 0.7rem 0;
+    background: #26332c;
+  }
+
+  .preview-pseo__page i {
+    width: 94%;
+    height: 0.3rem;
+    margin-top: 0.35rem;
+    background: #e1e4dc;
+  }
+
+  .preview-pseo__page i:nth-of-type(2) {
+    width: 72%;
+  }
+
+  .preview-pseo__nodes {
+    position: absolute;
+    right: 0.8rem;
+    bottom: 1rem;
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .preview-pseo__nodes div {
+    min-width: 4.1rem;
+    padding: 0.48rem;
+    border: 1px solid #ced3c5;
+    border-radius: 0.4rem;
+    background: #f8f9f4;
+    color: #536149;
+    font-size: 0.37rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+  .preview-pseo__links span {
+    position: absolute;
+    display: block;
+    height: 1px;
+    transform-origin: left;
+    background: #a6b39a;
+  }
+
+  .preview-pseo__links span:nth-child(1) {
+    top: 44%;
+    left: 42%;
+    width: 26%;
+    transform: rotate(20deg);
+  }
+
+  .preview-pseo__links span:nth-child(2) {
+    top: 54%;
+    left: 45%;
+    width: 26%;
+    transform: rotate(43deg);
+  }
+
+  .preview-pseo__links span:nth-child(3) {
+    top: 63%;
+    left: 42%;
+    width: 24%;
+    transform: rotate(64deg);
+  }
+
+  /* Fantivers preview */
+
+  .project-preview--fantivers {
+    background:
+      radial-gradient(circle at 20% 15%, rgb(188 147 255 / 25%), transparent 25%),
+      radial-gradient(circle at 80% 80%, rgb(103 180 156 / 18%), transparent 28%),
+      #121a27;
+  }
+
+  .preview-fantivers {
+    position: relative;
+    min-height: 320px;
+    overflow: hidden;
+    color: #f8f5ee;
+  }
+
+  .preview-fantivers__glow {
+    position: absolute;
+    width: 12rem;
+    height: 12rem;
+    border-radius: 999px;
+    filter: blur(55px);
+    opacity: 0.34;
+  }
+
+  .preview-fantivers__glow--one {
+    top: -5rem;
+    left: -2rem;
+    background: #9b7acd;
+  }
+
+  .preview-fantivers__glow--two {
+    right: -4rem;
+    bottom: -6rem;
+    background: #4c9b83;
+  }
+
+  .preview-fantivers__topbar {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    height: 2.6rem;
+    padding: 0 1rem;
+    border-bottom: 1px solid rgb(248 245 238 / 12%);
+  }
+
+  .preview-fantivers__topbar span {
+    margin-right: auto;
+    color: #d9c3a0;
+    font-size: 0.47rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+  }
+
+  .preview-fantivers__topbar i {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: rgb(248 245 238 / 28%);
+  }
+
+  .preview-fantivers__world {
+    position: relative;
+    height: 225px;
+  }
+
+  .preview-fantivers__node {
+    position: absolute;
+    z-index: 2;
+    display: grid;
+    width: 4.5rem;
+    height: 4.5rem;
+    place-items: center;
+    border: 1px solid rgb(248 245 238 / 30%);
+    border-radius: 50%;
+    background: rgb(16 24 38 / 58%);
+    box-shadow: 0 0 0 0.5rem rgb(248 245 238 / 3%);
+    backdrop-filter: blur(8px);
+  }
+
+  .preview-fantivers__node span {
+    color: #f4ecdf;
+    font-size: 0.38rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    line-height: 1.45;
+    text-align: center;
+  }
+
+  .preview-fantivers__node--core {
+    top: 5rem;
+    left: 43%;
+    border-color: #d4a768;
+    background: rgb(167 122 59 / 21%);
+  }
+
+  .preview-fantivers__node--one {
+    top: 1.2rem;
+    left: 16%;
+  }
+
+  .preview-fantivers__node--two {
+    right: 12%;
+    bottom: 1.5rem;
+  }
+
+  .preview-fantivers__node--three {
+    bottom: 0.8rem;
+    left: 29%;
+  }
+
+  .preview-fantivers__line {
+    position: absolute;
+    z-index: 1;
+    height: 1px;
+    transform-origin: left;
+    background: linear-gradient(90deg, rgb(212 167 104 / 75%), rgb(248 245 238 / 12%));
+  }
+
+  .preview-fantivers__line--one {
+    top: 7.4rem;
+    left: 29%;
+    width: 23%;
+    transform: rotate(20deg);
+  }
+
+  .preview-fantivers__line--two {
+    top: 9rem;
+    left: 55%;
+    width: 24%;
+    transform: rotate(35deg);
+  }
+
+  .preview-fantivers__line--three {
+    top: 11.7rem;
+    left: 42%;
+    width: 16%;
+    transform: rotate(117deg);
+  }
+
+  .preview-fantivers__tags {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    display: flex;
+    gap: 0.35rem;
+  }
+
+  .preview-fantivers__tags span {
+    padding: 0.3rem 0.42rem;
+    border: 1px solid rgb(248 245 238 / 15%);
+    border-radius: 999px;
+    background: rgb(248 245 238 / 6%);
+    color: rgb(248 245 238 / 72%);
+    font-size: 0.35rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 460px) {
+    .project-preview { min-height: 260px; }
+    .preview-dashboard { min-height: 205px; }
+    .preview-pseo__body { min-height: 205px; }
+    .preview-fantivers { min-height: 260px; }
+    .preview-fantivers__world {
+      transform: scale(0.84);
+      transform-origin: top center;
+    }
+  }
+</style>

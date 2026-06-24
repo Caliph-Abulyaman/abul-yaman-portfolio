@@ -1,17 +1,180 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/Button.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import { projects } from "../data/projects";
+import { site } from "../data/site";
 
+const serviceHighlights = [
+  {
+    title: "SaaS & Internal Tools",
+    text: "Products designed around the actual workflow: users, roles, actions, data, and future growth.",
+  },
+  {
+    title: "Dashboards & Management Systems",
+    text: "Operational interfaces for students, clients, teams, payments, classes, records, and more.",
+  },
+  {
+    title: "Search-Driven Web Products",
+    text: "SEO-aware systems with structured content, scalable templates, and practical technical foundations.",
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  description="Portfolio of Abul Yaman, a Laravel developer building SaaS products, management systems, dashboards, pSEO systems, and scalable web tools."
+>
+  <section class="hero section">
+    <div class="container hero__grid">
+      <div class="hero__content">
+        <p class="eyebrow">Laravel developer · KP, Pakistan</p>
+
+        <h1>Building web systems that are designed to grow.</h1>
+
+        <p class="hero__description">
+          Laravel developer focused on SaaS products, management platforms,
+          dashboards, pSEO systems, and practical tools built with long-term
+          structure in mind.
+        </p>
+
+        <div class="hero__actions">
+          <Button href="/projects">View Projects</Button>
+          <Button href="/contact" variant="secondary">Contact Me</Button>
+        </div>
+
+        <div class="hero__stack" aria-label="Primary technology stack">
+          <span>Laravel</span>
+          <span>Livewire</span>
+          <span>Tailwind</span>
+          <span>MySQL</span>
+          <span>PostgreSQL</span>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="Visual representation of development systems">
+        <div class="hero-visual__canvas">
+          <div class="hero-visual__label hero-visual__label--top">
+            <span></span>
+            SYSTEM THINKING
+          </div>
+
+          <div class="hero-visual__card hero-visual__card--main">
+            <div class="hero-visual__card-top">
+              <span>PRODUCT SYSTEM</span>
+              <i></i>
+            </div>
+
+            <div class="hero-visual__code">
+              <span class="hero-visual__code--muted">app/</span>
+              <span>dashboard</span>
+              <span>workflows</span>
+              <span>database</span>
+              <span class="hero-visual__code--accent">scalable</span>
+            </div>
+
+            <div class="hero-visual__bars">
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+          </div>
+
+          <div class="hero-visual__card hero-visual__card--small">
+            <span>AI-ASSISTED</span>
+            <strong>Judgment<br />still leads.</strong>
+          </div>
+
+          <div class="hero-visual__label hero-visual__label--bottom">
+            <span></span>
+            BUILT FOR MORE THAN LAUNCH DAY
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="credibility-strip">
+    <div class="container credibility-strip__grid">
+      <span>Laravel applications</span>
+      <span>Management systems</span>
+      <span>pSEO infrastructure</span>
+      <span>Deployment & hosting</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Selected work"
+        title="Work built around real systems."
+        description="A selection of private client work, internal tooling, and product work currently in development."
+      />
+
+      <div class="project-grid">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <SectionHeading
+        eyebrow="What I build"
+        title="Products that need more than a landing page."
+        description="The focus is practical software: useful workflows, durable structure, and interfaces people can actually operate."
+      />
+
+      <div class="three-column-grid">
+        {serviceHighlights.map((service, index) => (
+          <article class="home-service-card">
+            <span class="home-service-card__number">0{index + 1}</span>
+            <h3>{service.title}</h3>
+            <p>{service.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container approach-grid">
+      <div>
+        <p class="eyebrow">Engineering approach</p>
+        <h2>Built with structure, not shortcuts.</h2>
+      </div>
+
+      <div class="approach-list">
+        <div>
+          <span>01</span>
+          <p>Clean Laravel architecture</p>
+        </div>
+        <div>
+          <span>02</span>
+          <p>Database-first thinking</p>
+        </div>
+        <div>
+          <span>03</span>
+          <p>Responsive interface systems</p>
+        </div>
+        <div>
+          <span>04</span>
+          <p>Performance and scalability awareness</p>
+        </div>
+        <div>
+          <span>05</span>
+          <p>Deployment and hosting knowledge</p>
+        </div>
+        <div>
+          <span>06</span>
+          <p>AI-assisted workflows used carefully, not blindly</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA />
+</BaseLayout>

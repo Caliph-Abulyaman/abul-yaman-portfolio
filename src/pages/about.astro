@@ -1,0 +1,154 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import SkillCard from "../components/SkillCard.astro";
+import { education, languages } from "../data/education";
+import { skills } from "../data/skills";
+import { site } from "../data/site";
+---
+
+<BaseLayout
+  title="About"
+  description="Learn about Abul Yaman's development approach, technical focus, education, languages, and interest in scalable Laravel systems."
+>
+  <section class="page-intro section">
+    <div class="container page-intro__grid">
+      <div>
+        <p class="eyebrow">About</p>
+        <h1>A developer interested in systems, not just pages.</h1>
+      </div>
+
+      <p>
+        I am a Computer Science applicant from Khyber Pakhtunkhwa, Pakistan,
+        focused on Laravel applications, dashboard-heavy products, practical
+        workflows, structured data, and polished interfaces.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container story-grid">
+      <div class="story-grid__content">
+        <p class="eyebrow">Working approach</p>
+
+        <h2>Modern tools, deliberate decisions.</h2>
+
+        <p>
+          I use AI coding agents to increase speed, explore implementation
+          options, and reduce repetitive work. The goal is not to hand over
+          judgment to a tool. The goal is to move faster while keeping product
+          structure, usability, and technical decisions under control.
+        </p>
+
+        <p>
+          My strongest interest is in building SaaS products, management
+          platforms, dashboards, pSEO systems, and smaller tools that solve
+          practical problems without becoming fragile as they grow.
+        </p>
+
+        <div class="inline-facts">
+          <div>
+            <span>Based in</span>
+            <strong>{site.location}</strong>
+          </div>
+          <div>
+            <span>Current focus</span>
+            <strong>Laravel systems</strong>
+          </div>
+          <div>
+            <span>Work style</span>
+            <strong>Refine the weak points</strong>
+          </div>
+        </div>
+      </div>
+
+      <aside class="principles-card">
+        <p class="eyebrow eyebrow--light">Principles</p>
+        <h3>How I approach product work.</h3>
+
+        <ol>
+          <li>
+            <span>01</span>
+            <p>Build for the actual workflow, not a vague feature checklist.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <p>Treat the database as part of the product, not an afterthought.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <p>Design for future complexity before it becomes expensive.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <p>Refine until the visible weak points have been addressed.</p>
+          </li>
+          <li>
+            <span>05</span>
+            <p>Use AI to improve speed, not replace judgment.</p>
+          </li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Technical focus"
+        title="The tools behind the work."
+        description="A development stack centred on Laravel, interactive server-driven interfaces, relational data, deployment, search systems, and product planning."
+      />
+
+      <div class="skill-grid">
+        {skills.map((skill) => <SkillCard skill={skill} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Education"
+        title="Academic and independent learning."
+        description="Current education, completed study, and coursework presented accurately."
+      />
+
+      <div class="timeline">
+        {education.map((item) => (
+          <article class="timeline__item">
+            <div class="timeline__year">{item.year}</div>
+
+            <div class="timeline__content">
+              <h3>{item.title}</h3>
+              <p class="timeline__institution">{item.institution}</p>
+              <p>{item.note}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Languages"
+        title="Communication across three languages."
+      />
+
+      <div class="language-grid">
+        {languages.map((language) => (
+          <article class="language-card">
+            <span>{language.level}</span>
+            <h3>{language.name}</h3>
+            <p>{language.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA />
+</BaseLayout>

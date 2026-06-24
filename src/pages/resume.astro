@@ -1,0 +1,129 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/Button.astro";
+import { education, languages } from "../data/education";
+import { projects } from "../data/projects";
+import { skills } from "../data/skills";
+import { site } from "../data/site";
+---
+
+<BaseLayout
+  title="Resume"
+  description="Browser-readable résumé for Abul Yaman: Laravel developer, Computer Science applicant, and builder of management systems and search-driven products."
+>
+  <section class="resume-hero section">
+    <div class="container resume-hero__grid">
+      <div>
+        <p class="eyebrow">Resume</p>
+        <h1>{site.name}</h1>
+        <p class="resume-hero__headline">{site.headline}</p>
+      </div>
+
+      <div class="resume-hero__actions">
+        <Button href={site.emailHref}>Email Me</Button>
+        <Button href="/contact" variant="secondary">Contact Page</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container resume-layout">
+      <aside class="resume-sidebar">
+        <div>
+          <p class="mini-label">Location</p>
+          <p>{site.location}</p>
+        </div>
+
+        <div>
+          <p class="mini-label">Email</p>
+          <a href={site.emailHref}>{site.email}</a>
+        </div>
+
+        <div>
+          <p class="mini-label">Phone / WhatsApp</p>
+          <a href={site.phonePrimaryHref}>{site.phonePrimary}</a>
+          <a href={site.phoneSecondaryHref}>{site.phoneSecondary}</a>
+        </div>
+
+        <div class="resume-pdf-note">
+          <strong>PDF résumé coming soon.</strong>
+          <span>The browser version contains the current public information.</span>
+        </div>
+      </aside>
+
+      <div class="resume-content">
+        <section>
+          <p class="eyebrow">Summary</p>
+          <h2>Product-minded Laravel developer.</h2>
+          <p>
+            Computer Science applicant focused on Laravel applications,
+            management systems, dashboards, pSEO infrastructure, deployment,
+            and refined interface work. Interested in building SaaS products,
+            practical tools, and systems designed to remain useful as they
+            grow.
+          </p>
+        </section>
+
+        <section>
+          <p class="eyebrow">Technical skills</p>
+
+          <div class="resume-skills">
+            {skills.map((skill) => (
+              <div>
+                <span>{skill.name}</span>
+                <strong>{skill.level}</strong>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Selected projects</p>
+
+          <div class="resume-projects">
+            {projects.map((project) => (
+              <article>
+                <div>
+                  <h3>{project.title}</h3>
+                  <span>{project.status}</span>
+                </div>
+
+                <p>{project.description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Education & coursework</p>
+
+          <div class="resume-education">
+            {education.map((item) => (
+              <article>
+                <span>{item.year}</span>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.institution}</p>
+                  <small>{item.note}</small>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <p class="eyebrow">Languages</p>
+
+          <div class="resume-languages">
+            {languages.map((language) => (
+              <div>
+                <h3>{language.name}</h3>
+                <p>{language.level}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

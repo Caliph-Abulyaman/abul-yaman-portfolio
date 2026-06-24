@@ -1,0 +1,115 @@
+---
+import { navigation, site } from "../data/site";
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/" aria-label={`${site.name} home page`}>
+      <span class="brand__mark">AY</span>
+      <span class="brand__name">{site.name}</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      {navigation.map((item) => {
+        const isActive =
+          item.href === "/"
+            ? currentPath === "/"
+            : currentPath.startsWith(item.href);
+
+        return (
+          <a
+            href={item.href}
+            aria-current={isActive ? "page" : undefined}
+            class:list={[
+              "nav-link",
+              isActive && "nav-link--active",
+              item.emphasized && "nav-link--contact",
+            ]}
+          >
+            {item.label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-toggle
+    >
+      <span class="sr-only">Open navigation menu</span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+    <div class="container mobile-menu__inner">
+      <nav aria-label="Mobile navigation">
+        {navigation.map((item) => (
+          <a href={item.href} data-mobile-link>
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <div class="mobile-menu__contact">
+        <a href={site.emailHref}>{site.email}</a>
+        <a href={site.whatsappPrimary} target="_blank" rel="noreferrer">
+          WhatsApp: {site.phonePrimary}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector("[data-menu-toggle]");
+  const menu = document.querySelector("[data-mobile-menu]");
+
+  const closeMenu = () => {
+    if (!(toggle instanceof HTMLButtonElement) || !(menu instanceof HTMLElement)) {
+      return;
+    }
+
+    toggle.setAttribute("aria-expanded", "false");
+    menu.hidden = true;
+    document.body.classList.remove("menu-open");
+  };
+
+  const openMenu = () => {
+    if (!(toggle instanceof HTMLButtonElement) || !(menu instanceof HTMLElement)) {
+      return;
+    }
+
+    toggle.setAttribute("aria-expanded", "true");
+    menu.hidden = false;
+    document.body.classList.add("menu-open");
+  };
+
+  if (toggle instanceof HTMLButtonElement && menu instanceof HTMLElement) {
+    toggle.addEventListener("click", () => {
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    document.querySelectorAll("[data-mobile-link]").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    });
+  }
+</script>

@@ -1,0 +1,27 @@
+---
+import { site } from "../data/site";
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__top">
+      <div>
+        <a class="site-footer__brand" href="/">{site.name}</a>
+        <p>Laravel Developer</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href={site.emailHref}>Email</a>
+        <a href={site.whatsappPrimary} target="_blank" rel="noreferrer">
+          WhatsApp
+        </a>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© 2026 Abul Yaman. Built with Laravel thinking, even when static.</p>
+      <p>{site.location}</p>
+    </div>
+  </div>
+</footer>

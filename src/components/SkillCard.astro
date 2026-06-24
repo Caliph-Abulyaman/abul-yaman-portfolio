@@ -1,0 +1,18 @@
+---
+import type { Skill } from "../data/skills";
+
+interface Props {
+  skill: Skill;
+}
+
+const { skill } = Astro.props;
+---
+
+<article class="skill-card">
+  <div class="skill-card__top">
+    <h3>{skill.name}</h3>
+    <span>{skill.level}</span>
+  </div>
+
+  <p>{skill.description}</p>
+</article>

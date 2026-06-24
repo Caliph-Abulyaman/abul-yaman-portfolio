@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/Button.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import { services } from "../data/services";
+---
+
+<BaseLayout
+  title="Services"
+  description="Laravel development, dashboards, SaaS MVPs, pSEO systems, deployment support, and technical product planning by Abul Yaman."
+>
+  <section class="page-intro section">
+    <div class="container page-intro__grid">
+      <div>
+        <p class="eyebrow">Services</p>
+        <h1>Services for products that need more than a landing page.</h1>
+      </div>
+
+      <p>
+        The focus is practical web software: structured systems, useful
+        workflows, refined interfaces, reliable deployment, and product
+        planning before complexity becomes expensive.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="service-grid">
+        {services.map((service) => <ServiceCard service={service} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container service-process">
+      <div>
+        <p class="eyebrow">Project inquiries</p>
+        <h2>Better information creates better systems.</h2>
+      </div>
+
+      <div>
+        <p>
+          For project inquiries, include your goal, target users, required
+          features, current situation, and preferred timeline. A short but
+          precise description is enough to begin a useful conversation.
+        </p>
+
+        <Button href="/contact">Discuss a Project</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
