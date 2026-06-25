@@ -45,10 +45,10 @@ import { projects } from "../data/projects";
       {projects.map((project, index) => {
         const previewLabel =
           project.previewVariant === "dashboard"
-            ? "Screenshots coming soon"
+            ? "Delivered to client — private system"
             : project.previewVariant === "pseo"
-              ? "Private system — testing in progress"
-              : "In design and development";
+              ? "Private system — view available on request"
+              : "In design and development — briefing given on request";
 
         return (
           <article
