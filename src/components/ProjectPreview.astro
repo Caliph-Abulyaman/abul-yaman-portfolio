@@ -11,109 +11,214 @@ const { variant, label } = Astro.props;
 
 <div class:list={["project-preview", `project-preview--${variant}`]}>
   {variant === "dashboard" && (
-    <div class="preview-browser">
-      <div class="preview-browser__topbar">
-        <span></span>
-        <span></span>
-        <span></span>
-        <div class="preview-browser__address"></div>
-      </div>
-
-      <div class="preview-dashboard">
-        <aside class="preview-dashboard__sidebar">
-          <div class="preview-dashboard__brand"></div>
-          <div class="preview-dashboard__nav">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </aside>
-
-        <div class="preview-dashboard__main">
-          <div class="preview-dashboard__headline">
-            <div></div>
-            <span></span>
-          </div>
-
-          <div class="preview-dashboard__stats">
+    <div class="preview-huzaifa">
+      <section class="preview-huzaifa__public">
+        <div class="preview-huzaifa__public-topbar">
+          <div class="preview-huzaifa__brand">
+            <span>HR</span>
             <div>
-              <span></span>
-              <strong></strong>
-            </div>
-            <div>
-              <span></span>
-              <strong></strong>
-            </div>
-            <div>
-              <span></span>
-              <strong></strong>
+              <strong>Huzaifa</strong>
+              <small>English learning</small>
             </div>
           </div>
 
-          <div class="preview-dashboard__content">
-            <div class="preview-dashboard__table">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-
-            <div class="preview-dashboard__chart">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+          <div class="preview-huzaifa__nav" aria-hidden="true">
+            <i></i>
+            <i></i>
+            <i></i>
           </div>
         </div>
-      </div>
+
+        <div class="preview-huzaifa__public-body">
+          <div class="preview-huzaifa__public-copy">
+            <span>LEARNING WITH STRUCTURE</span>
+            <strong>English learning with a visible path.</strong>
+            <p>Public courses, guided enrolment, and a clear next step for every learner.</p>
+            <em>Explore courses <i>→</i></em>
+          </div>
+
+          <div class="preview-huzaifa__public-courses" aria-hidden="true">
+            <span>COURSES</span>
+            <div><i></i><b>Speaking</b></div>
+            <div><i></i><b>Writing</b></div>
+            <div><i></i><b>Grammar</b></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="preview-huzaifa__admin">
+        <div class="preview-huzaifa__admin-topbar">
+          <div>
+            <span>ADMIN WORKSPACE</span>
+            <strong>Operations overview</strong>
+          </div>
+          <div class="preview-huzaifa__admin-user" aria-hidden="true">
+            <i></i>
+            <b>HU</b>
+          </div>
+        </div>
+
+        <div class="preview-huzaifa__metrics" aria-hidden="true">
+          <div><span>COURSES</span><i></i></div>
+          <div><span>LEARNERS</span><i></i></div>
+          <div><span>GRADING</span><i></i></div>
+        </div>
+
+        <div class="preview-huzaifa__quick-actions" aria-hidden="true">
+          <span><i></i>Schedule</span>
+          <span><i></i>Enrol</span>
+          <span><i></i>Review</span>
+        </div>
+
+        <div class="preview-huzaifa__admin-grid">
+          <div class="preview-huzaifa__session-list">
+            <div class="preview-huzaifa__sheet-heading">
+              <b>Upcoming sessions</b>
+              <i></i>
+            </div>
+            <div><span class="preview-huzaifa__session-icon"></span><p><b>Session details</b><small>Course, time, meeting</small></p><em>→</em></div>
+            <div><span class="preview-huzaifa__session-icon"></span><p><b>Course control</b><small>Capacity and status</small></p><em>→</em></div>
+          </div>
+
+          <div class="preview-huzaifa__activity-list">
+            <div class="preview-huzaifa__sheet-heading">
+              <b>Activity</b>
+              <i></i>
+            </div>
+            <div><span></span><p>New enrolment</p></div>
+            <div><span></span><p>Feedback to review</p></div>
+            <div><span></span><p>Message received</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="preview-huzaifa__workflow">
+        <div class="preview-huzaifa__workflow-header">
+          <div>
+            <span>PRODUCT WORKFLOWS</span>
+            <strong>Courses, sessions, and reviews.</strong>
+          </div>
+          <i aria-hidden="true"></i>
+        </div>
+
+        <div class="preview-huzaifa__workflow-steps" aria-hidden="true">
+          <div>
+            <span class="preview-huzaifa__workflow-icon preview-huzaifa__workflow-icon--course"></span>
+            <p><b>Course catalogue</b><small>Structured offers</small></p>
+          </div>
+          <div>
+            <span class="preview-huzaifa__workflow-icon preview-huzaifa__workflow-icon--session"></span>
+            <p><b>Session setup</b><small>Clear scheduling</small></p>
+          </div>
+          <div>
+            <span class="preview-huzaifa__workflow-icon preview-huzaifa__workflow-icon--review"></span>
+            <p><b>Review moderation</b><small>Publish with care</small></p>
+          </div>
+        </div>
+      </section>
     </div>
   )}
 
   {variant === "pseo" && (
     <div class="preview-pseo">
-      <div class="preview-pseo__toolbar">
-        <span class="preview-pseo__brand"></span>
-        <span class="preview-pseo__toggle"></span>
-        <span class="preview-pseo__toggle"></span>
-      </div>
-
-      <div class="preview-pseo__body">
-        <aside class="preview-pseo__filters">
-          <span>LOCATION</span>
-          <div></div>
-          <div></div>
-          <div></div>
-          <span>SERVICES</span>
-          <div></div>
-          <div></div>
-        </aside>
-
-        <div class="preview-pseo__canvas">
-          <div class="preview-pseo__page preview-pseo__page--main">
-            <span class="preview-pseo__city">ROOF REPAIR · PESHAWAR</span>
-            <strong></strong>
-            <i></i>
-            <i></i>
-            <i></i>
+      <section class="preview-pseo__site">
+        <div class="preview-pseo__sitebar">
+          <div class="preview-pseo__identity">
+            <span class="preview-pseo__mark"><i></i></span>
+            <strong>LOCAL SEARCH</strong>
           </div>
 
-          <div class="preview-pseo__nodes">
-            <div>HVAC<br />MARDAN</div>
-            <div>PLUMBING<br />SWABI</div>
-            <div>ROOFING<br />CHARSADDA</div>
-          </div>
-
-          <div class="preview-pseo__links">
+          <div class="preview-pseo__site-nav">
             <span></span>
             <span></span>
             <span></span>
           </div>
         </div>
-      </div>
+
+        <div class="preview-pseo__public-content">
+          <div class="preview-pseo__public-copy">
+            <span class="preview-pseo__eyebrow">CITY-LEVEL VISIBILITY</span>
+            <strong>Findable where customers are searching.</strong>
+            <p>Structured service pages for every market you serve.</p>
+            <div class="preview-pseo__public-actions">
+              <span><i></i>Build coverage</span>
+              <em>Search-ready structure</em>
+            </div>
+          </div>
+
+          <div class="preview-pseo__search-card">
+            <div class="preview-pseo__search-bar">
+              <i></i>
+              <span>service + city</span>
+              <b></b>
+            </div>
+            <div class="preview-pseo__search-result">
+              <span>LOCAL RESULT</span>
+              <strong>Service page for a selected area</strong>
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="preview-pseo__workspace">
+        <aside class="preview-pseo__workspace-sidebar">
+          <div class="preview-pseo__workspace-brand"><i></i></div>
+          <span class="preview-pseo__workspace-nav preview-pseo__workspace-nav--active"></span>
+          <span class="preview-pseo__workspace-nav"></span>
+          <span class="preview-pseo__workspace-nav"></span>
+          <span class="preview-pseo__workspace-nav"></span>
+          <small>Workspace</small>
+        </aside>
+
+        <div class="preview-pseo__workspace-main">
+          <div class="preview-pseo__workspace-topline">
+            <div>
+              <span>SEARCH WORKSPACE</span>
+              <strong>City page control</strong>
+            </div>
+            <i></i>
+          </div>
+
+          <div class="preview-pseo__readiness-row">
+            <div>
+              <span class="preview-pseo__readiness-icon preview-pseo__readiness-icon--green"></span>
+              <small>Coverage</small>
+              <strong>Selected</strong>
+            </div>
+            <div>
+              <span class="preview-pseo__readiness-icon preview-pseo__readiness-icon--amber"></span>
+              <small>Quality</small>
+              <strong>Review</strong>
+            </div>
+            <div>
+              <span class="preview-pseo__readiness-icon preview-pseo__readiness-icon--blue"></span>
+              <small>Publish</small>
+              <strong>Controlled</strong>
+            </div>
+          </div>
+
+          <div class="preview-pseo__workspace-grid">
+            <div class="preview-pseo__setup-card">
+              <span>SETUP PATH</span>
+              <strong>Business, cities, services.</strong>
+              <div class="preview-pseo__setup-steps">
+                <i class="is-ready"></i>
+                <i class="is-ready"></i>
+                <i></i>
+              </div>
+            </div>
+
+            <div class="preview-pseo__batch-card">
+              <span>CREATE CAREFULLY</span>
+              <strong>Generate a review batch.</strong>
+              <em><i></i>Quality checks before scale</em>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )}
 
@@ -175,7 +280,7 @@ const { variant, label } = Astro.props;
     position: absolute;
     right: 1rem;
     bottom: 1rem;
-    z-index: 2;
+    z-index: 8;
     padding: 0.48rem 0.7rem;
     border: 1px solid rgb(255 255 255 / 14%);
     border-radius: 999px;
@@ -188,365 +293,1038 @@ const { variant, label } = Astro.props;
     backdrop-filter: blur(10px);
   }
 
-  /* Dashboard preview */
+  /* Huzaifa Portal product-surface preview
+     Translates the public learning site and private operating system into a
+     portfolio-safe visual. It abstracts course delivery, enrolment, session
+     setup, review moderation, notifications, and administration rather than
+     reproducing a literal application screenshot. */
 
   .project-preview--dashboard {
-    padding: 1.25rem;
+    padding: 0.85rem;
     background:
-      radial-gradient(circle at 12% 10%, rgb(167 122 59 / 16%), transparent 28%),
-      linear-gradient(150deg, #e9e2d7 0%, #f9f7f2 100%);
+      radial-gradient(circle at 9% 12%, rgb(238 179 35 / 22%), transparent 26%),
+      radial-gradient(circle at 87% 88%, rgb(42 92 145 / 15%), transparent 34%),
+      linear-gradient(145deg, #e8edf4 0%, #f8f7f2 54%, #e8ebee 100%);
   }
 
-  .preview-browser {
-    height: 100%;
-    overflow: hidden;
-    border: 1px solid rgb(16 24 38 / 14%);
-    border-radius: 1rem;
-    background: #f8f8f7;
-    box-shadow: 0 24px 50px rgb(16 24 38 / 12%);
-  }
-
-  .preview-browser__topbar {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    height: 2.25rem;
-    padding: 0 0.75rem;
-    border-bottom: 1px solid rgb(16 24 38 / 8%);
-    background: #f0efed;
-  }
-
-  .preview-browser__topbar > span {
-    width: 0.46rem;
-    height: 0.46rem;
-    border-radius: 999px;
-    background: #c9c1b4;
-  }
-
-  .preview-browser__address {
-    width: 44%;
-    height: 0.5rem;
-    margin-left: 0.55rem;
-    border-radius: 99px;
-    background: #ddd9d1;
-  }
-
-  .preview-dashboard {
-    display: grid;
-    grid-template-columns: 24% 1fr;
-    min-height: 262px;
-  }
-
-  .preview-dashboard__sidebar {
-    padding: 1rem 0.72rem;
-    background: #152031;
-  }
-
-  .preview-dashboard__brand {
-    width: 52%;
-    height: 0.5rem;
-    margin-bottom: 1.7rem;
-    border-radius: 99px;
-    background: #d4a768;
-  }
-
-  .preview-dashboard__nav {
-    display: grid;
-    gap: 0.74rem;
-  }
-
-  .preview-dashboard__nav span {
-    display: block;
-    width: 82%;
-    height: 0.36rem;
-    border-radius: 99px;
-    background: rgb(248 245 238 / 22%);
-  }
-
-  .preview-dashboard__nav span:nth-child(2) {
-    width: 64%;
-    background: rgb(248 245 238 / 50%);
-  }
-
-  .preview-dashboard__main {
-    padding: 1rem;
-  }
-
-  .preview-dashboard__headline {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .preview-dashboard__headline div {
-    width: 32%;
-    height: 0.58rem;
-    border-radius: 99px;
-    background: #1e2a3b;
-  }
-
-  .preview-dashboard__headline span {
-    width: 16%;
-    height: 0.4rem;
-    border-radius: 99px;
-    background: #ded8cd;
-  }
-
-  .preview-dashboard__stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.6rem;
-    margin-top: 1rem;
-  }
-
-  .preview-dashboard__stats div {
-    min-height: 3.5rem;
-    padding: 0.7rem;
-    border: 1px solid #e5e1d9;
-    border-radius: 0.55rem;
-    background: #fff;
-  }
-
-  .preview-dashboard__stats span,
-  .preview-dashboard__stats strong {
-    display: block;
-    border-radius: 99px;
-  }
-
-  .preview-dashboard__stats span {
-    width: 52%;
-    height: 0.28rem;
-    background: #d8d4cc;
-  }
-
-  .preview-dashboard__stats strong {
-    width: 70%;
-    height: 0.55rem;
-    margin-top: 0.58rem;
-    background: #c89a57;
-  }
-
-  .preview-dashboard__content {
-    display: grid;
-    grid-template-columns: 1.25fr 0.75fr;
-    gap: 0.7rem;
-    margin-top: 0.7rem;
-  }
-
-  .preview-dashboard__table,
-  .preview-dashboard__chart {
-    min-height: 108px;
-    border: 1px solid #e5e1d9;
-    border-radius: 0.55rem;
-    background: #fff;
-  }
-
-  .preview-dashboard__table {
-    display: grid;
-    align-content: center;
-    gap: 0.55rem;
-    padding: 0.8rem;
-  }
-
-  .preview-dashboard__table span {
-    display: block;
-    height: 0.35rem;
-    border-radius: 99px;
-    background: #e5e1d9;
-  }
-
-  .preview-dashboard__table span:nth-child(2),
-  .preview-dashboard__table span:nth-child(4) {
-    width: 74%;
-  }
-
-  .preview-dashboard__chart {
-    display: flex;
-    align-items: end;
-    gap: 0.38rem;
-    padding: 0.7rem;
-  }
-
-  .preview-dashboard__chart span {
-    flex: 1;
-    border-radius: 0.25rem 0.25rem 0 0;
-    background: #839066;
-  }
-
-  .preview-dashboard__chart span:nth-child(1) { height: 38%; }
-  .preview-dashboard__chart span:nth-child(2) { height: 58%; }
-  .preview-dashboard__chart span:nth-child(3) { height: 43%; }
-  .preview-dashboard__chart span:nth-child(4) { height: 80%; }
-  .preview-dashboard__chart span:nth-child(5) { height: 64%; }
-
-  /* pSEO preview */
-
-  .project-preview--pseo {
-    padding: 1.25rem;
-    background:
-      radial-gradient(circle at 90% 10%, rgb(102 112 90 / 22%), transparent 28%),
-      linear-gradient(150deg, #f5f4ee 0%, #e4e7dd 100%);
-  }
-
-  .preview-pseo {
+  .preview-huzaifa {
+    position: relative;
+    min-height: 300px;
     height: 100%;
     overflow: hidden;
     border: 1px solid rgb(16 24 38 / 12%);
     border-radius: 1rem;
-    background: #fbfbf7;
-    box-shadow: 0 24px 50px rgb(16 24 38 / 10%);
+    background:
+      linear-gradient(rgb(30 56 92 / 4%) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(30 56 92 / 4%) 1px, transparent 1px),
+      #eff2f5;
+    background-size: 1.35rem 1.35rem, 1.35rem 1.35rem, auto;
+    box-shadow: 0 24px 50px rgb(16 24 38 / 12%);
   }
 
-  .preview-pseo__toolbar {
+  .preview-huzaifa__public,
+  .preview-huzaifa__admin,
+  .preview-huzaifa__workflow {
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid rgb(16 24 38 / 11%);
+    box-shadow: 0 0.85rem 1.75rem rgb(16 24 38 / 13%);
+  }
+
+  .preview-huzaifa__public {
+    top: 0.7rem;
+    left: 0.7rem;
+    width: 59%;
+    min-height: 164px;
+    padding: 0.68rem;
+    border-radius: 0.7rem;
+    background:
+      linear-gradient(rgb(255 255 255 / 4%) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 4%) 1px, transparent 1px),
+      radial-gradient(circle at 82% 20%, rgb(217 167 48 / 16%), transparent 31%),
+      #0f1d33;
+    background-size: 1.15rem 1.15rem, 1.15rem 1.15rem, auto, auto;
+  }
+
+  .preview-huzaifa__public-topbar {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    height: 2.4rem;
-    padding: 0 0.8rem;
-    border-bottom: 1px solid #e2e3dc;
-    background: #f1f2eb;
+    justify-content: space-between;
+    padding-bottom: 0.52rem;
+    border-bottom: 1px solid rgb(255 255 255 / 10%);
   }
 
-  .preview-pseo__brand {
-    width: 28%;
-    height: 0.45rem;
-    margin-right: auto;
-    border-radius: 99px;
-    background: #617059;
+  .preview-huzaifa__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.38rem;
   }
 
-  .preview-pseo__toggle {
-    width: 0.85rem;
-    height: 0.85rem;
-    border-radius: 0.22rem;
-    background: #d2d7c7;
-  }
-
-  .preview-pseo__body {
+  .preview-huzaifa__brand > span {
     display: grid;
-    grid-template-columns: 26% 1fr;
-    min-height: 263px;
+    width: 1.15rem;
+    height: 1.15rem;
+    place-items: center;
+    border-radius: 50%;
+    background: #e6aa24;
+    color: #0f1d33;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.35rem;
+    font-weight: 900;
   }
 
-  .preview-pseo__filters {
+  .preview-huzaifa__brand div {
+    display: grid;
+    gap: 0.04rem;
+  }
+
+  .preview-huzaifa__brand strong {
+    color: #fffdfa;
+    font-family: "DM Serif Display", Georgia, serif;
+    font-size: 0.54rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .preview-huzaifa__brand small,
+  .preview-huzaifa__public-copy > span,
+  .preview-huzaifa__public-courses > span,
+  .preview-huzaifa__admin-topbar span,
+  .preview-huzaifa__workflow-header span {
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.28rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .preview-huzaifa__brand small {
+    color: rgb(255 255 255 / 52%);
+    letter-spacing: 0.04em;
+  }
+
+  .preview-huzaifa__nav {
+    display: flex;
+    align-items: center;
+    gap: 0.28rem;
+  }
+
+  .preview-huzaifa__nav i {
+    display: block;
+    width: 0.72rem;
+    height: 0.18rem;
+    border-radius: 99px;
+    background: rgb(255 255 255 / 28%);
+  }
+
+  .preview-huzaifa__nav i:last-child {
+    width: 0.95rem;
+    height: 0.46rem;
+    border-radius: 0.12rem;
+    background: #e6aa24;
+  }
+
+  .preview-huzaifa__public-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 4.15rem;
+    gap: 0.5rem;
+    padding-top: 0.66rem;
+  }
+
+  .preview-huzaifa__public-copy {
     display: grid;
     align-content: start;
-    gap: 0.55rem;
-    padding: 0.9rem 0.7rem;
-    border-right: 1px solid #e5e6df;
-    background: #f5f6f0;
   }
 
-  .preview-pseo__filters span {
-    margin-top: 0.35rem;
-    color: #64705b;
+  .preview-huzaifa__public-copy > span {
+    color: #e6aa24;
+  }
+
+  .preview-huzaifa__public-copy > strong {
+    max-width: 7rem;
+    margin-top: 0.3rem;
+    color: #fffdfa;
+    font-family: "DM Serif Display", Georgia, serif;
+    font-size: clamp(0.9rem, 2.55vw, 1.28rem);
+    font-weight: 400;
+    line-height: 0.98;
+  }
+
+  .preview-huzaifa__public-copy > p {
+    max-width: 7.5rem;
+    margin: 0.38rem 0 0;
+    color: rgb(255 255 255 / 63%);
+    font-size: 0.36rem;
+    line-height: 1.42;
+  }
+
+  .preview-huzaifa__public-copy > em {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.28rem;
+    width: fit-content;
+    margin-top: 0.52rem;
+    padding: 0.33rem 0.4rem;
+    border-radius: 0.16rem;
+    background: #e6aa24;
+    color: #10213b;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.3rem;
+    font-style: normal;
+    font-weight: 900;
+  }
+
+  .preview-huzaifa__public-copy > em i {
+    font-size: 0.45rem;
+    font-style: normal;
+    line-height: 0;
+  }
+
+  .preview-huzaifa__public-courses {
+    display: grid;
+    align-content: start;
+    gap: 0.28rem;
+    padding: 0.45rem;
+    border: 1px solid rgb(255 255 255 / 12%);
+    border-radius: 0.42rem;
+    background: rgb(255 255 255 / 6%);
+  }
+
+  .preview-huzaifa__public-courses > span {
+    color: rgb(255 255 255 / 47%);
+  }
+
+  .preview-huzaifa__public-courses > div {
+    display: flex;
+    align-items: center;
+    gap: 0.22rem;
+    padding-top: 0.23rem;
+    border-top: 1px solid rgb(255 255 255 / 10%);
+  }
+
+  .preview-huzaifa__public-courses > div i {
+    display: block;
+    width: 0.34rem;
+    height: 0.34rem;
+    border-radius: 0.1rem;
+    background: rgb(230 170 36 / 88%);
+  }
+
+  .preview-huzaifa__public-courses > div:nth-child(3) i { background: #9d79f5; }
+  .preview-huzaifa__public-courses > div:nth-child(4) i { background: #5d95ed; }
+
+  .preview-huzaifa__public-courses > div b {
+    color: rgb(255 255 255 / 80%);
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.29rem;
+    font-weight: 800;
+  }
+
+  .preview-huzaifa__admin {
+    z-index: 2;
+    top: 2.32rem;
+    right: 0.7rem;
+    bottom: 0.7rem;
+    width: 59%;
+    min-height: 207px;
+    padding: 0.68rem;
+    border-radius: 0.68rem;
+    background: #fffefa;
+  }
+
+  .preview-huzaifa__admin-topbar {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    padding-bottom: 0.48rem;
+    border-bottom: 1px solid #e7e9ea;
+  }
+
+  .preview-huzaifa__admin-topbar > div:first-child {
+    display: grid;
+    gap: 0.1rem;
+  }
+
+  .preview-huzaifa__admin-topbar span,
+  .preview-huzaifa__workflow-header span {
+    color: #4eab77;
+  }
+
+  .preview-huzaifa__admin-topbar strong,
+  .preview-huzaifa__workflow-header strong {
+    color: #17233a;
+    font-family: "DM Serif Display", Georgia, serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .preview-huzaifa__admin-user {
+    display: flex;
+    align-items: center;
+    gap: 0.28rem;
+  }
+
+  .preview-huzaifa__admin-user > i {
+    position: relative;
+    display: block;
+    width: 0.62rem;
+    height: 0.62rem;
+    border: 2px solid #738091;
+    border-radius: 0.25rem 0.25rem 0.35rem 0.35rem;
+  }
+
+  .preview-huzaifa__admin-user > i::after {
+    content: "";
+    position: absolute;
+    top: -0.2rem;
+    right: -0.16rem;
+    width: 0.26rem;
+    height: 0.26rem;
+    border: 1px solid #fffefa;
+    border-radius: 50%;
+    background: #e65757;
+  }
+
+  .preview-huzaifa__admin-user > b {
+    display: grid;
+    width: 0.78rem;
+    height: 0.78rem;
+    place-items: center;
+    border-radius: 50%;
+    background: #122f5c;
+    color: #f2c147;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.27rem;
+    font-weight: 900;
+  }
+
+  .preview-huzaifa__metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.28rem;
+    margin-top: 0.48rem;
+  }
+
+  .preview-huzaifa__metrics > div {
+    display: grid;
+    gap: 0.23rem;
+    padding: 0.33rem;
+    border: 1px solid #edf0f1;
+    border-radius: 0.25rem;
+    background: #fbfcfd;
+  }
+
+  .preview-huzaifa__metrics span {
+    color: #8b96a2;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.22rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+  }
+
+  .preview-huzaifa__metrics i {
+    display: block;
+    width: 65%;
+    height: 0.38rem;
+    border-radius: 0.12rem;
+    background: linear-gradient(90deg, #173e75 0 50%, #dde7f8 50% 100%);
+  }
+
+  .preview-huzaifa__metrics > div:nth-child(2) i {
+    background: linear-gradient(90deg, #9a4ce7 0 45%, #f0e4fb 45% 100%);
+  }
+
+  .preview-huzaifa__metrics > div:nth-child(3) i {
+    background: linear-gradient(90deg, #dc9c1e 0 62%, #fff1d3 62% 100%);
+  }
+
+  .preview-huzaifa__quick-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.28rem;
+    margin-top: 0.38rem;
+  }
+
+  .preview-huzaifa__quick-actions span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.18rem;
+    min-height: 0.8rem;
+    border: 1px solid #dbe7fb;
+    border-radius: 0.22rem;
+    background: #f7faff;
+    color: #315ca8;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.24rem;
+    font-weight: 900;
+  }
+
+  .preview-huzaifa__quick-actions span:nth-child(2) {
+    border-color: #e5d8fa;
+    background: #fbf8ff;
+    color: #8644d0;
+  }
+
+  .preview-huzaifa__quick-actions span:nth-child(3) {
+    border-color: #ffe4a8;
+    background: #fffaf0;
+    color: #b8740b;
+  }
+
+  .preview-huzaifa__quick-actions i {
+    display: block;
+    width: 0.3rem;
+    height: 0.3rem;
+    border: 1px solid currentColor;
+    border-radius: 0.08rem;
+  }
+
+  .preview-huzaifa__admin-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 0.32rem;
+    margin-top: 0.42rem;
+  }
+
+  .preview-huzaifa__session-list,
+  .preview-huzaifa__activity-list {
+    padding: 0.38rem;
+    border: 1px solid #e8eced;
+    border-radius: 0.32rem;
+    background: #fff;
+  }
+
+  .preview-huzaifa__sheet-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.28rem;
+    border-bottom: 1px solid #edf0f0;
+  }
+
+  .preview-huzaifa__sheet-heading > b {
+    color: #233451;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.28rem;
+    font-weight: 900;
+  }
+
+  .preview-huzaifa__sheet-heading > i {
+    display: block;
+    width: 0.4rem;
+    height: 0.2rem;
+    border-radius: 99px;
+    background: #173e75;
+  }
+
+  .preview-huzaifa__session-list > div:not(:first-child) {
+    display: grid;
+    grid-template-columns: 0.54rem 1fr 0.35rem;
+    align-items: center;
+    gap: 0.2rem;
+    padding-top: 0.26rem;
+  }
+
+  .preview-huzaifa__session-icon {
+    display: block;
+    width: 0.48rem;
+    height: 0.48rem;
+    border-radius: 0.14rem;
+    background: #e7efff;
+  }
+
+  .preview-huzaifa__session-list p,
+  .preview-huzaifa__activity-list p,
+  .preview-huzaifa__workflow-steps p {
+    display: grid;
+    gap: 0.05rem;
+    margin: 0;
+  }
+
+  .preview-huzaifa__session-list b,
+  .preview-huzaifa__workflow-steps b {
+    color: #415067;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.24rem;
+    font-weight: 900;
+    line-height: 1.15;
+  }
+
+  .preview-huzaifa__session-list small,
+  .preview-huzaifa__workflow-steps small {
+    color: #99a3ae;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.21rem;
+    line-height: 1.1;
+  }
+
+  .preview-huzaifa__session-list em {
+    color: #5373a6;
     font-size: 0.43rem;
+    font-style: normal;
+    line-height: 1;
+  }
+
+  .preview-huzaifa__activity-list > div:not(:first-child) {
+    display: grid;
+    grid-template-columns: 0.3rem 1fr;
+    align-items: center;
+    gap: 0.17rem;
+    padding-top: 0.26rem;
+  }
+
+  .preview-huzaifa__activity-list > div:not(:first-child) > span {
+    display: block;
+    width: 0.24rem;
+    height: 0.24rem;
+    border-radius: 50%;
+    background: #edb21b;
+  }
+
+  .preview-huzaifa__activity-list > div:nth-child(3) > span { background: #5d95ed; }
+  .preview-huzaifa__activity-list > div:nth-child(4) > span { background: #57b87d; }
+
+  .preview-huzaifa__activity-list p {
+    color: #5f6c7d;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.23rem;
+    font-weight: 800;
+    line-height: 1.15;
+  }
+
+  .preview-huzaifa__workflow {
+    z-index: 3;
+    left: 0.7rem;
+    bottom: 0.7rem;
+    width: 46%;
+    min-height: 105px;
+    padding: 0.52rem;
+    border-radius: 0.55rem;
+    background: #fdfcf8;
+  }
+
+  .preview-huzaifa__workflow-header {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    padding-bottom: 0.34rem;
+    border-bottom: 1px solid #e7e9e6;
+  }
+
+  .preview-huzaifa__workflow-header > div {
+    display: grid;
+    gap: 0.1rem;
+  }
+
+  .preview-huzaifa__workflow-header > i {
+    display: block;
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 0.16rem;
+    background: linear-gradient(135deg, #f7e7ad, #f0bf42);
+  }
+
+  .preview-huzaifa__workflow-steps {
+    display: grid;
+    gap: 0.22rem;
+    margin-top: 0.35rem;
+  }
+
+  .preview-huzaifa__workflow-steps > div {
+    display: grid;
+    grid-template-columns: 0.5rem 1fr;
+    align-items: center;
+    gap: 0.22rem;
+  }
+
+  .preview-huzaifa__workflow-icon {
+    display: block;
+    width: 0.48rem;
+    height: 0.48rem;
+    border-radius: 0.14rem;
+    background: #e7efff;
+  }
+
+  .preview-huzaifa__workflow-icon--course { background: #e7efff; }
+  .preview-huzaifa__workflow-icon--session { background: #fff0d7; }
+  .preview-huzaifa__workflow-icon--review { background: #dff6e8; }
+
+  @media (max-width: 520px) {
+    .preview-huzaifa__public { width: 63%; }
+    .preview-huzaifa__admin { width: 62%; }
+    .preview-huzaifa__workflow { width: 49%; }
+  }
+
+  /* pSEO product-surface preview
+     Translates the supplied public site, inquiry, and workspace screens into
+     one portfolio-safe visual. It is not a screenshot or a literal copy. */
+
+  .project-preview--pseo {
+    padding: 0.9rem;
+    background:
+      radial-gradient(circle at 85% 12%, rgb(31 154 82 / 21%), transparent 30%),
+      linear-gradient(145deg, #edf3eb 0%, #f8f8f2 52%, #e5ede2 100%);
+  }
+
+  .preview-pseo {
+    position: relative;
+    height: 100%;
+    min-height: 300px;
+    overflow: hidden;
+    border: 1px solid rgb(16 24 38 / 12%);
+    border-radius: 1rem;
+    background: #fdfdf9;
+    box-shadow: 0 24px 50px rgb(16 24 38 / 12%);
+  }
+
+  .preview-pseo__site {
+    position: relative;
+    min-height: 184px;
+    padding: 0.72rem 0.8rem 2.8rem;
+    border-bottom: 1px solid #dfe7dc;
+    background:
+      linear-gradient(rgb(36 119 68 / 4%) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(36 119 68 / 4%) 1px, transparent 1px),
+      radial-gradient(circle at 75% 25%, rgb(47 159 89 / 10%), transparent 30%),
+      #fffefa;
+    background-size: 1.6rem 1.6rem, 1.6rem 1.6rem, auto, auto;
+  }
+
+  .preview-pseo__sitebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.62rem;
+    border-bottom: 1px solid #edf0e8;
+  }
+
+  .preview-pseo__identity {
+    display: flex;
+    align-items: center;
+    gap: 0.42rem;
+    color: #13251a;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.43rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+  }
+
+  .preview-pseo__mark {
+    display: grid;
+    width: 1rem;
+    aspect-ratio: 1;
+    place-items: center;
+    border-radius: 0.28rem;
+    background: #102117;
+    box-shadow: 0 0.18rem 0.35rem rgb(16 33 23 / 20%);
+  }
+
+  .preview-pseo__mark i {
+    width: 0.36rem;
+    height: 0.36rem;
+    border: 1px solid #93dcae;
+    border-radius: 0.12rem;
+  }
+
+  .preview-pseo__site-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.33rem;
+  }
+
+  .preview-pseo__site-nav span {
+    display: block;
+    width: 1.4rem;
+    height: 0.26rem;
+    border-radius: 99px;
+    background: #d8ded5;
+  }
+
+  .preview-pseo__site-nav span:last-child {
+    width: 1.8rem;
+    height: 0.56rem;
+    border-radius: 0.18rem;
+    background: #2e9b59;
+  }
+
+  .preview-pseo__public-content {
+    display: grid;
+    grid-template-columns: 1.04fr 0.96fr;
+    gap: 0.85rem;
+    padding-top: 0.85rem;
+  }
+
+  .preview-pseo__public-copy {
+    display: grid;
+    align-content: start;
+  }
+
+  .preview-pseo__eyebrow {
+    color: #287647;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.34rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+  }
+
+  .preview-pseo__public-copy > strong {
+    max-width: 8rem;
+    margin-top: 0.36rem;
+    color: #17251c;
+    font-family: "DM Serif Display", Georgia, serif;
+    font-size: clamp(0.88rem, 2.45vw, 1.24rem);
+    font-weight: 400;
+    line-height: 0.98;
+  }
+
+  .preview-pseo__public-copy > p {
+    max-width: 8.5rem;
+    margin: 0.45rem 0 0;
+    color: #69736a;
+    font-size: 0.43rem;
+    line-height: 1.45;
+  }
+
+  .preview-pseo__public-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.65rem;
+  }
+
+  .preview-pseo__public-actions > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.26rem;
+    padding: 0.35rem 0.44rem;
+    border-radius: 0.24rem;
+    background: #24934f;
+    color: #fff;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.34rem;
+    font-weight: 800;
+  }
+
+  .preview-pseo__public-actions > span i {
+    width: 0.28rem;
+    height: 0.28rem;
+    border: 1px solid rgb(255 255 255 / 85%);
+    border-radius: 50%;
+  }
+
+  .preview-pseo__public-actions > em {
+    max-width: 4rem;
+    color: #849085;
+    font-size: 0.32rem;
+    font-style: normal;
+    line-height: 1.25;
+  }
+
+  .preview-pseo__search-card {
+    padding: 0.5rem;
+    border: 1px solid #dfe7dd;
+    border-radius: 0.45rem;
+    background: rgb(255 255 255 / 88%);
+    box-shadow: 0 0.65rem 1.15rem rgb(33 69 43 / 8%);
+  }
+
+  .preview-pseo__search-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.32rem;
+    height: 1rem;
+    padding: 0 0.35rem;
+    border: 1px solid #e3e8e1;
+    border-radius: 0.22rem;
+    background: #fff;
+  }
+
+  .preview-pseo__search-bar > i {
+    width: 0.32rem;
+    height: 0.32rem;
+    border: 1px solid #6d9778;
+    border-radius: 50%;
+  }
+
+  .preview-pseo__search-bar > span {
+    color: #8a948c;
+    font-size: 0.33rem;
+  }
+
+  .preview-pseo__search-bar > b {
+    width: 0.34rem;
+    height: 0.34rem;
+    margin-left: auto;
+    border-radius: 50%;
+    background: #e7eee7;
+  }
+
+  .preview-pseo__search-result {
+    display: grid;
+    gap: 0.23rem;
+    padding: 0.62rem 0.14rem 0.04rem;
+  }
+
+  .preview-pseo__search-result > span {
+    color: #2b8b50;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.3rem;
     font-weight: 900;
     letter-spacing: 0.1em;
   }
 
-  .preview-pseo__filters div {
-    height: 0.4rem;
+  .preview-pseo__search-result > strong {
+    max-width: 6.75rem;
+    color: #305fa2;
+    font-size: 0.49rem;
+    font-weight: 700;
+    line-height: 1.12;
+  }
+
+  .preview-pseo__search-result > i {
+    display: block;
+    width: 100%;
+    height: 0.2rem;
     border-radius: 99px;
-    background: #d9ddce;
+    background: #e3e9e2;
   }
 
-  .preview-pseo__filters div:nth-of-type(2) {
-    width: 76%;
+  .preview-pseo__search-result > i:nth-of-type(2) {
+    width: 78%;
   }
 
-  .preview-pseo__canvas {
-    position: relative;
-    padding: 1rem;
+  .preview-pseo__search-result > i:nth-of-type(3) {
+    width: 56%;
   }
 
-  .preview-pseo__page {
-    width: 63%;
-    padding: 0.85rem;
-    border: 1px solid #d8dccf;
-    border-radius: 0.5rem;
+  .preview-pseo__workspace {
+    position: absolute;
+    right: 0.68rem;
+    bottom: 0.68rem;
+    left: 0.68rem;
+    display: grid;
+    grid-template-columns: 13% 1fr;
+    min-height: 132px;
+    overflow: hidden;
+    border: 1px solid #dfe6dd;
+    border-radius: 0.65rem;
+    background: #fdfefa;
+    box-shadow: 0 0.9rem 1.65rem rgb(16 24 38 / 13%);
+  }
+
+  .preview-pseo__workspace-sidebar {
+    display: grid;
+    align-content: start;
+    gap: 0.44rem;
+    padding: 0.62rem 0.42rem;
+    background: #143324;
+  }
+
+  .preview-pseo__workspace-brand {
+    display: grid;
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-bottom: 0.25rem;
+    place-items: center;
+    border-radius: 0.32rem;
+    background: #2ba95d;
+  }
+
+  .preview-pseo__workspace-brand i {
+    width: 0.42rem;
+    height: 0.42rem;
+    border: 1px solid rgb(255 255 255 / 85%);
+    border-radius: 0.14rem;
+  }
+
+  .preview-pseo__workspace-nav {
+    display: block;
+    width: 0.9rem;
+    height: 0.22rem;
+    margin-left: 0.13rem;
+    border-radius: 99px;
+    background: rgb(238 252 242 / 27%);
+  }
+
+  .preview-pseo__workspace-nav--active {
+    height: 0.5rem;
+    margin-left: 0;
+    border-radius: 0.16rem;
+    background: #d8f6df;
+  }
+
+  .preview-pseo__workspace-sidebar small {
+    margin-top: auto;
+    color: rgb(238 252 242 / 45%);
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.24rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  .preview-pseo__workspace-main {
+    padding: 0.65rem 0.7rem;
+  }
+
+  .preview-pseo__workspace-topline {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+  }
+
+  .preview-pseo__workspace-topline span,
+  .preview-pseo__workspace-topline strong {
+    display: block;
+  }
+
+  .preview-pseo__workspace-topline span {
+    color: #3e9c5c;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.28rem;
+    font-weight: 900;
+    letter-spacing: 0.11em;
+  }
+
+  .preview-pseo__workspace-topline strong {
+    margin-top: 0.18rem;
+    color: #17221a;
+    font-family: "DM Serif Display", Georgia, serif;
+    font-size: 0.78rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .preview-pseo__workspace-topline > i {
+    width: 0.78rem;
+    height: 0.78rem;
+    border-radius: 0.2rem;
+    background: #e4f4e7;
+  }
+
+  .preview-pseo__readiness-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.32rem;
+    margin-top: 0.52rem;
+  }
+
+  .preview-pseo__readiness-row > div {
+    min-width: 0;
+    padding: 0.34rem;
+    border: 1px solid #e6ebe4;
+    border-radius: 0.28rem;
     background: #fff;
   }
 
-  .preview-pseo__city {
-    color: #68765d;
-    font-size: 0.38rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-  }
-
-  .preview-pseo__page strong,
-  .preview-pseo__page i {
+  .preview-pseo__readiness-icon {
     display: block;
-    border-radius: 99px;
+    width: 0.42rem;
+    height: 0.42rem;
+    margin-bottom: 0.2rem;
+    border-radius: 0.13rem;
   }
 
-  .preview-pseo__page strong {
-    width: 72%;
-    height: 0.54rem;
-    margin: 0.7rem 0;
-    background: #26332c;
+  .preview-pseo__readiness-icon--green { background: #ccefd8; }
+  .preview-pseo__readiness-icon--amber { background: #f7dfb9; }
+  .preview-pseo__readiness-icon--blue { background: #d8e8f6; }
+
+  .preview-pseo__readiness-row small,
+  .preview-pseo__readiness-row strong {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
-  .preview-pseo__page i {
-    width: 94%;
-    height: 0.3rem;
-    margin-top: 0.35rem;
-    background: #e1e4dc;
+  .preview-pseo__readiness-row small {
+    color: #8a9389;
+    font-size: 0.25rem;
+    font-weight: 700;
   }
 
-  .preview-pseo__page i:nth-of-type(2) {
-    width: 72%;
+  .preview-pseo__readiness-row strong {
+    margin-top: 0.1rem;
+    color: #3e5245;
+    font-size: 0.32rem;
+    font-weight: 900;
   }
 
-  .preview-pseo__nodes {
-    position: absolute;
-    right: 0.8rem;
-    bottom: 1rem;
+  .preview-pseo__workspace-grid {
     display: grid;
-    gap: 0.45rem;
+    grid-template-columns: 1.18fr 0.82fr;
+    gap: 0.35rem;
+    margin-top: 0.43rem;
   }
 
-  .preview-pseo__nodes div {
-    min-width: 4.1rem;
-    padding: 0.48rem;
-    border: 1px solid #ced3c5;
-    border-radius: 0.4rem;
-    background: #f8f9f4;
-    color: #536149;
-    font-size: 0.37rem;
+  .preview-pseo__setup-card,
+  .preview-pseo__batch-card {
+    min-height: 2.9rem;
+    padding: 0.36rem 0.42rem;
+    border: 1px solid #e7ebe5;
+    border-radius: 0.28rem;
+    background: #fff;
+  }
+
+  .preview-pseo__setup-card > span,
+  .preview-pseo__batch-card > span {
+    display: block;
+    color: #68806f;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 0.24rem;
     font-weight: 900;
     letter-spacing: 0.08em;
-    text-align: center;
   }
 
-  .preview-pseo__links span {
-    position: absolute;
+  .preview-pseo__setup-card > strong,
+  .preview-pseo__batch-card > strong {
     display: block;
-    height: 1px;
-    transform-origin: left;
-    background: #a6b39a;
+    margin-top: 0.2rem;
+    color: #223127;
+    font-size: 0.35rem;
+    font-weight: 800;
+    line-height: 1.2;
   }
 
-  .preview-pseo__links span:nth-child(1) {
-    top: 44%;
-    left: 42%;
-    width: 26%;
-    transform: rotate(20deg);
+  .preview-pseo__setup-steps {
+    display: flex;
+    gap: 0.2rem;
+    margin-top: 0.36rem;
   }
 
-  .preview-pseo__links span:nth-child(2) {
-    top: 54%;
-    left: 45%;
-    width: 26%;
-    transform: rotate(43deg);
+  .preview-pseo__setup-steps i {
+    display: block;
+    flex: 1;
+    height: 0.18rem;
+    border-radius: 99px;
+    background: #e8ece7;
   }
 
-  .preview-pseo__links span:nth-child(3) {
-    top: 63%;
-    left: 42%;
-    width: 24%;
-    transform: rotate(64deg);
+  .preview-pseo__setup-steps i.is-ready { background: #4db36f; }
+
+  .preview-pseo__batch-card {
+    background: #f2faf2;
+  }
+
+  .preview-pseo__batch-card em {
+    display: flex;
+    align-items: center;
+    gap: 0.18rem;
+    margin-top: 0.35rem;
+    color: #588464;
+    font-size: 0.25rem;
+    font-style: normal;
+  }
+
+  .preview-pseo__batch-card em i {
+    width: 0.28rem;
+    height: 0.28rem;
+    border-radius: 50%;
+    background: #5abf76;
   }
 
   /* Fantivers preview */
@@ -713,7 +1491,13 @@ const { variant, label } = Astro.props;
   @media (max-width: 460px) {
     .project-preview { min-height: 260px; }
     .preview-dashboard { min-height: 205px; }
-    .preview-pseo__body { min-height: 205px; }
+    .preview-pseo { min-height: 240px; }
+    .preview-pseo__site { min-height: 155px; }
+    .preview-pseo__workspace { min-height: 110px; }
+    .preview-pseo__public-copy > strong { font-size: 0.9rem; }
+    .preview-pseo__workspace-main { padding: 0.52rem; }
+    .preview-pseo__workspace-sidebar { padding: 0.5rem 0.34rem; }
+    .preview-pseo__readiness-row > div { padding: 0.25rem; }
     .preview-fantivers { min-height: 260px; }
     .preview-fantivers__world {
       transform: scale(0.84);
