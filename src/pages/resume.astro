@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Button from "../components/Button.astro";
+import PageVisual from "../components/PageVisual.astro";
 import { education, languages } from "../data/education";
 import { projects } from "../data/projects";
 import { skills } from "../data/skills";
@@ -11,17 +12,21 @@ import { site } from "../data/site";
   title="Resume"
   description="Browser-readable résumé for Abul Yaman: Laravel developer, Computer Science applicant, and builder of management systems and search-driven products."
 >
-  <section class="resume-hero section">
-    <div class="container resume-hero__grid">
-      <div>
+  <section class="page-hero section page-hero--resume">
+    <div class="container page-hero__grid">
+      <div class="page-hero__content">
         <p class="eyebrow">Resume</p>
         <h1>{site.name}</h1>
-        <p class="resume-hero__headline">{site.headline}</p>
+        <p class="page-hero__lead">{site.headline}</p>
+
+        <div class="resume-hero__actions">
+          <Button href={site.emailHref}>Email Me</Button>
+          <Button href="/contact" variant="secondary">Contact Page</Button>
+        </div>
       </div>
 
-      <div class="resume-hero__actions">
-        <Button href={site.emailHref}>Email Me</Button>
-        <Button href="/contact" variant="secondary">Contact Page</Button>
+      <div class="page-hero__visual">
+        <PageVisual variant="resume" />
       </div>
     </div>
   </section>

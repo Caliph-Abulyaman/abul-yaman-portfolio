@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Button from "../components/Button.astro";
+import PageVisual from "../components/PageVisual.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import { services } from "../data/services";
 ---
@@ -9,22 +10,25 @@ import { services } from "../data/services";
   title="Services"
   description="Laravel development, dashboards, SaaS MVPs, pSEO systems, deployment support, and technical product planning by Abul Yaman."
 >
-  <section class="page-intro section">
-    <div class="container page-intro__grid">
-      <div>
+  <section class="page-hero section page-hero--services">
+    <div class="container page-hero__grid">
+      <div class="page-hero__content">
         <p class="eyebrow">Services</p>
         <h1>Services for products that need more than a landing page.</h1>
+        <p class="page-hero__lead">
+          The focus is practical web software: structured systems, useful
+          workflows, refined interfaces, reliable deployment, and product
+          planning before complexity becomes expensive.
+        </p>
       </div>
 
-      <p>
-        The focus is practical web software: structured systems, useful
-        workflows, refined interfaces, reliable deployment, and product
-        planning before complexity becomes expensive.
-      </p>
+      <div class="page-hero__visual">
+        <PageVisual variant="services" />
+      </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--soft service-offerings">
     <div class="container">
       <div class="service-grid">
         {services.map((service) => <ServiceCard service={service} />)}
@@ -32,7 +36,7 @@ import { services } from "../data/services";
     </div>
   </section>
 
-  <section class="section section--soft">
+  <section class="section">
     <div class="container service-process">
       <div>
         <p class="eyebrow">Project inquiries</p>

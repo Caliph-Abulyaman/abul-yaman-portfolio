@@ -3,6 +3,7 @@ export interface Service {
   title: string;
   description: string;
   outcomes: string[];
+  bestFor: string;
 }
 
 export const services: Service[] = [
@@ -16,6 +17,7 @@ export const services: Service[] = [
       "Secure user workflows",
       "Responsive product interfaces",
     ],
+    bestFor: "Businesses, internal operations, and workflow-based tools.",
   },
   {
     number: "02",
@@ -27,6 +29,7 @@ export const services: Service[] = [
       "Data management workflows",
       "Clear operational visibility",
     ],
+    bestFor: "Student portals, client systems, and operations-heavy teams.",
   },
   {
     number: "03",
@@ -38,6 +41,7 @@ export const services: Service[] = [
       "Database-first structure",
       "Scalable product foundations",
     ],
+    bestFor: "Founders validating a focused product with real users.",
   },
   {
     number: "04",
@@ -49,6 +53,7 @@ export const services: Service[] = [
       "Template-based architecture",
       "Internal-linking systems",
     ],
+    bestFor: "Local businesses and multi-location service websites.",
   },
   {
     number: "05",
@@ -60,6 +65,7 @@ export const services: Service[] = [
       "HTTPS and DNS setup",
       "Deployment workflows",
     ],
+    bestFor: "Projects moving from development into production.",
   },
   {
     number: "06",
@@ -71,5 +77,6 @@ export const services: Service[] = [
       "User-flow planning",
       "Technical decision support",
     ],
+    bestFor: "Founders who need a clearer product before development begins.",
   },
 ];

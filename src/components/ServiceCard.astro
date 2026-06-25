@@ -19,4 +19,9 @@ const { service } = Astro.props;
       <li>{outcome}</li>
     ))}
   </ul>
+
+  <p class="service-card__fit">
+    <span>Best suited for</span>
+    {service.bestFor}
+  </p>
 </article>

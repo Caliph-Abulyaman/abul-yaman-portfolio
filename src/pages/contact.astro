@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageVisual from "../components/PageVisual.astro";
 import { site } from "../data/site";
 ---
 
@@ -7,22 +8,25 @@ import { site } from "../data/site";
   title="Contact"
   description="Contact Abul Yaman for Laravel applications, dashboards, pSEO systems, deployment support, technical planning, internships, or collaborations."
 >
-  <section class="page-intro section">
-    <div class="container page-intro__grid">
-      <div>
+  <section class="page-hero section page-hero--contact">
+    <div class="container page-hero__grid">
+      <div class="page-hero__content">
         <p class="eyebrow">Contact</p>
         <h1>Let's discuss the system you need to build.</h1>
+        <p class="page-hero__lead">
+          For freelance work, technical collaborations, internships, product
+          discussions, or questions about a project, direct email and WhatsApp
+          are available.
+        </p>
       </div>
 
-      <p>
-        For freelance work, technical collaborations, internships, product
-        discussions, or questions about a project, direct email and WhatsApp
-        are available.
-      </p>
+      <div class="page-hero__visual">
+        <PageVisual variant="contact" />
+      </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--soft">
     <div class="container contact-layout">
       <aside class="contact-details">
         <div class="contact-details__intro">
@@ -38,6 +42,9 @@ import { site } from "../data/site";
         <div class="contact-method">
           <span>Email</span>
           <a href={site.emailHref}>{site.email}</a>
+          <button class="copy-email" type="button" data-copy-email data-email={site.email}>
+            Copy email
+          </button>
         </div>
 
         <div class="contact-method">
@@ -175,10 +182,48 @@ import { site } from "../data/site";
 <script>
   const form = document.querySelector("[data-contact-form]");
   const status = document.querySelector("[data-form-status]");
+  const copyEmailButton = document.querySelector("[data-copy-email]");
+
+  const setCopyButtonLabel = (label: string) => {
+    if (!(copyEmailButton instanceof HTMLButtonElement)) return;
+
+    copyEmailButton.textContent = label;
+    window.setTimeout(() => {
+      copyEmailButton.textContent = "Copy email";
+    }, 1800);
+  };
+
+  if (copyEmailButton instanceof HTMLButtonElement) {
+    copyEmailButton.addEventListener("click", async () => {
+      const email = copyEmailButton.dataset.email || "";
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(email);
+        } else {
+          const fallback = document.createElement("textarea");
+          fallback.value = email;
+          fallback.setAttribute("readonly", "");
+          fallback.style.position = "fixed";
+          fallback.style.opacity = "0";
+          document.body.appendChild(fallback);
+          fallback.select();
+          document.execCommand("copy");
+          fallback.remove();
+        }
+
+        setCopyButtonLabel("Copied");
+      } catch {
+        setCopyButtonLabel("Copy failed");
+      }
+    });
+  }
 
   if (form instanceof HTMLFormElement && status instanceof HTMLElement) {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
+
+      if (!form.reportValidity()) return;
 
       const formData = new FormData(form);
 

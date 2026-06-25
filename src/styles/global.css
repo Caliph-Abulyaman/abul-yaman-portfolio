@@ -926,30 +926,6 @@ ol {
   background: rgb(248 245 238 / 7%);
 }
 
-/* Intro pages */
-
-.page-intro {
-  padding-top: 6rem;
-  padding-bottom: 5.2rem;
-}
-
-.page-intro__grid {
-  display: grid;
-  grid-template-columns: 1fr 0.72fr;
-  align-items: end;
-  gap: 5rem;
-}
-
-.page-intro h1 {
-  margin-bottom: 0;
-}
-
-.page-intro p:last-child {
-  max-width: 32rem;
-  margin: 0 0 0.4rem;
-  font-size: 1rem;
-}
-
 /* About page */
 
 .story-grid {
@@ -1221,7 +1197,9 @@ ol {
 }
 
 .service-card {
-  min-height: 20rem;
+  display: flex;
+  min-height: 22rem;
+  flex-direction: column;
   padding: 1.5rem;
   border: 1px solid var(--border);
   border-radius: 1rem;
@@ -1260,6 +1238,7 @@ ol {
   gap: 0.46rem;
   margin-top: 1.4rem;
   list-style: none;
+  margin-bottom: 1.4rem;
 }
 
 .service-card li {
@@ -1281,6 +1260,26 @@ ol {
   content: "";
 }
 
+.service-card__fit {
+  display: grid;
+  gap: 0.25rem;
+  min-height: 0 !important;
+  margin: auto 0 0 !important;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.7rem !important;
+  line-height: 1.5;
+}
+
+.service-card__fit span {
+  color: var(--bronze);
+  font-size: 0.54rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .service-process {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
@@ -1298,34 +1297,6 @@ ol {
 }
 
 /* Resume */
-
-.resume-hero {
-  padding-top: 5.7rem;
-  padding-bottom: 4.5rem;
-}
-
-.resume-hero__grid {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 2rem;
-}
-
-.resume-hero h1 {
-  margin-bottom: 0.6rem;
-}
-
-.resume-hero__headline {
-  max-width: 40rem;
-  margin: 0;
-  font-size: 1rem;
-}
-
-.resume-hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-}
 
 .resume-layout {
   display: grid;
@@ -1670,18 +1641,206 @@ ol {
   font-weight: 700;
 }
 
+/* Page visual refactor --------------------------------------------------- */
+
+.page-hero {
+  padding-top: clamp(5.4rem, 9vw, 8.5rem);
+  padding-bottom: clamp(4.8rem, 8vw, 7.5rem);
+}
+
+.page-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(20rem, 0.98fr);
+  align-items: center;
+  gap: clamp(3rem, 7vw, 7.5rem);
+}
+
+.page-hero__content h1 {
+  max-width: 10.5ch;
+  margin-bottom: 1.5rem;
+}
+
+.page-hero--projects .page-hero__content h1 {
+  max-width: 11.5ch;
+}
+
+.page-hero--services .page-hero__content h1 {
+  max-width: 10.6ch;
+}
+
+.page-hero--resume .page-hero__content h1 {
+  max-width: none;
+}
+
+.page-hero__lead {
+  max-width: 35rem;
+  margin: 0;
+  font-size: clamp(0.94rem, 1.5vw, 1.08rem);
+  line-height: 1.72;
+}
+
+.page-hero__visual {
+  width: min(100%, 33rem);
+  justify-self: end;
+}
+
+.page-hero__visual .page-visual {
+  transform: translateZ(0);
+  transition:
+    transform 260ms ease,
+    box-shadow 260ms ease;
+}
+
+.page-hero__visual:hover .page-visual {
+  box-shadow: 0 26px 75px rgb(16 24 38 / 13%);
+  transform: translateY(-4px);
+}
+
+.page-hero--resume .resume-hero__actions {
+  margin-top: 1.8rem;
+}
+
+.project-index-band {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgb(255 253 248 / 48%);
+}
+
+.project-index {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  min-height: 4.4rem;
+}
+
+.project-index > span {
+  flex: none;
+  color: var(--bronze);
+  font-size: 0.61rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.project-index > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+}
+
+.project-index a {
+  position: relative;
+  padding: 0.15rem 0;
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.project-index a::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.1rem;
+  left: 0;
+  height: 1px;
+  background: var(--bronze);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 180ms ease;
+}
+
+.project-index a:hover::after,
+.project-index a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.project-case-study {
+  scroll-margin-top: 1.5rem;
+}
+
+.skill-groups {
+  display: grid;
+  gap: 3.8rem;
+}
+
+.skill-group {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.skill-group__header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-group__header .mini-label {
+  margin-bottom: 0.35rem;
+  color: var(--bronze);
+}
+
+.skill-group__header > div > p:last-child {
+  max-width: 43rem;
+  margin: 0;
+  font-size: 0.78rem;
+}
+
+.skill-group__header > span {
+  flex: none;
+  padding: 0.42rem 0.62rem;
+  border: 1px solid rgb(167 122 59 / 32%);
+  border-radius: 999px;
+  color: #88602b;
+  font-size: 0.56rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.service-offerings {
+  border-top: 1px solid rgb(222 216 205 / 56%);
+  border-bottom: 1px solid rgb(222 216 205 / 56%);
+}
+
+.copy-email {
+  width: fit-content;
+  padding: 0.35rem 0.52rem;
+  border: 1px solid rgb(167 122 59 / 42%);
+  border-radius: 999px;
+  background: transparent;
+  color: #88602b;
+  font-size: 0.59rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.copy-email:hover {
+  border-color: var(--bronze);
+  background: rgb(167 122 59 / 10%);
+  color: var(--ink);
+}
+
 /* Responsive */
 
 @media (max-width: 980px) {
   .hero__grid,
-  .page-intro__grid,
+  .page-hero__grid,
   .story-grid,
   .contact-layout {
     grid-template-columns: 1fr;
   }
 
   .hero__grid,
-  .page-intro__grid,
+  .page-hero__grid,
   .story-grid,
   .contact-layout {
     gap: 2.5rem;
@@ -1732,6 +1891,21 @@ ol {
   .contact-details__intro h2 {
     max-width: none;
   }
+
+  .page-hero__content h1,
+  .page-hero--projects .page-hero__content h1,
+  .page-hero--services .page-hero__content h1 {
+    max-width: 12ch;
+  }
+
+  .page-hero__visual {
+    width: min(100%, 39rem);
+    justify-self: start;
+  }
+
+  .skill-group__header {
+    align-items: start;
+  }
 }
 
 @media (max-width: 720px) {
@@ -1757,7 +1931,7 @@ ol {
   }
 
   .hero__description,
-  .page-intro p:last-child {
+  .page-hero__lead {
     font-size: 0.94rem;
   }
 
@@ -1846,6 +2020,48 @@ ol {
 
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .page-hero {
+    padding-top: 4.7rem;
+    padding-bottom: 4.8rem;
+  }
+
+  .page-hero__content h1,
+  .page-hero--projects .page-hero__content h1,
+  .page-hero--services .page-hero__content h1 {
+    max-width: 11.5ch;
+  }
+
+  .page-hero__lead {
+    font-size: 0.94rem;
+  }
+
+  .project-index {
+    align-items: start;
+    min-height: 0;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .project-index > div {
+    gap: 0.45rem 0.9rem;
+  }
+
+  .skill-groups {
+    gap: 3rem;
+  }
+
+  .skill-group__header {
+    align-items: start;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .service-card {
+    min-height: 0;
   }
 }
 

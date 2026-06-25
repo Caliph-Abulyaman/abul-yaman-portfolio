@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContactCTA from "../components/ContactCTA.astro";
+import PageVisual from "../components/PageVisual.astro";
 import ProjectPreview from "../components/ProjectPreview.astro";
 import StatusBadge from "../components/StatusBadge.astro";
 import { projects } from "../data/projects";
@@ -10,20 +11,34 @@ import { projects } from "../data/projects";
   title="Projects"
   description="Selected private client work, pSEO infrastructure, and product design work by Laravel developer Abul Yaman."
 >
-  <section class="page-intro section">
-    <div class="container page-intro__grid">
-      <div>
+  <section class="page-hero section page-hero--projects">
+    <div class="container page-hero__grid">
+      <div class="page-hero__content">
         <p class="eyebrow">Projects</p>
         <h1>Projects built around real systems and long-term structure.</h1>
+        <p class="page-hero__lead">
+          A selection of private client work, internal tools, and product work
+          currently in development. Each project is presented honestly without
+          exposing private code, client data, or unreleased product mechanics.
+        </p>
       </div>
 
-      <p>
-        A selection of private client work, internal tools, and product work
-        currently in development. Each project is presented honestly without
-        exposing private code, client data, or unreleased product mechanics.
-      </p>
+      <div class="page-hero__visual">
+        <PageVisual variant="projects" />
+      </div>
     </div>
   </section>
+
+  <div class="project-index-band">
+    <nav class="container project-index" aria-label="Project index">
+      <span>Jump to</span>
+      <div>
+        {projects.map((project) => (
+          <a href={`#${project.slug}`}>{project.title}</a>
+        ))}
+      </div>
+    </nav>
+  </div>
 
   <section class="section project-case-studies">
     <div class="container">

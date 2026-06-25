@@ -1,29 +1,51 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContactCTA from "../components/ContactCTA.astro";
+import PageVisual from "../components/PageVisual.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import SkillCard from "../components/SkillCard.astro";
 import { education, languages } from "../data/education";
 import { skills } from "../data/skills";
 import { site } from "../data/site";
+
+const skillGroups = [
+  {
+    category: "Development",
+    label: "Core development",
+    description: "The application layer: backend structure, interactive interfaces, and responsive presentation.",
+  },
+  {
+    category: "Systems",
+    label: "Data & infrastructure",
+    description: "The foundations that keep product workflows dependable in development and production.",
+  },
+  {
+    category: "Product",
+    label: "Product systems",
+    description: "Search, planning, technical writing, and AI-assisted work used to make a product clearer and stronger.",
+  },
+] as const;
 ---
 
 <BaseLayout
   title="About"
   description="Learn about Abul Yaman's development approach, technical focus, education, languages, and interest in scalable Laravel systems."
 >
-  <section class="page-intro section">
-    <div class="container page-intro__grid">
-      <div>
+  <section class="page-hero section page-hero--about">
+    <div class="container page-hero__grid">
+      <div class="page-hero__content">
         <p class="eyebrow">About</p>
         <h1>A developer interested in systems, not just pages.</h1>
+        <p class="page-hero__lead">
+          I am a Computer Science applicant from Khyber Pakhtunkhwa, Pakistan,
+          focused on Laravel applications, dashboard-heavy products, practical
+          workflows, structured data, and polished interfaces.
+        </p>
       </div>
 
-      <p>
-        I am a Computer Science applicant from Khyber Pakhtunkhwa, Pakistan,
-        focused on Laravel applications, dashboard-heavy products, practical
-        workflows, structured data, and polished interfaces.
-      </p>
+      <div class="page-hero__visual">
+        <PageVisual variant="about" />
+      </div>
     </div>
   </section>
 
@@ -101,8 +123,24 @@ import { site } from "../data/site";
         description="A development stack centred on Laravel, interactive server-driven interfaces, relational data, deployment, search systems, and product planning."
       />
 
-      <div class="skill-grid">
-        {skills.map((skill) => <SkillCard skill={skill} />)}
+      <div class="skill-groups">
+        {skillGroups.map((group) => (
+          <section class="skill-group">
+            <div class="skill-group__header">
+              <div>
+                <p class="mini-label">{group.label}</p>
+                <p>{group.description}</p>
+              </div>
+              <span>{skills.filter((skill) => skill.category === group.category).length} areas</span>
+            </div>
+
+            <div class="skill-grid">
+              {skills
+                .filter((skill) => skill.category === group.category)
+                .map((skill) => <SkillCard skill={skill} />)}
+            </div>
+          </section>
+        ))}
       </div>
     </div>
   </section>
