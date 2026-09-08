@@ -79,9 +79,9 @@ import { site } from "../data/site";
           <p class="eyebrow">Project inquiry</p>
           <h2>Send a message</h2>
           <p>
-            This form prepares an email in your mail app. Direct email and
-            WhatsApp remain available if your device does not have a mail app
-            configured.
+            This form sends directly. If sending fails for any reason, it
+            falls back to opening your email app instead — either way, the
+            message reaches me.
           </p>
         </div>
 
@@ -168,8 +168,8 @@ import { site } from "../data/site";
             />
           </div>
 
-          <button class="button button--primary" type="submit">
-            Prepare Email
+          <button class="button button--primary" type="submit" data-submit-btn>
+            Send Message
           </button>
 
           <p class="form-status" data-form-status aria-live="polite"></p>
@@ -179,24 +179,23 @@ import { site } from "../data/site";
   </section>
 </BaseLayout>
 
-<script>
+<script define:vars={{ toEmail: site.email }}>
   const form = document.querySelector("[data-contact-form]");
   const status = document.querySelector("[data-form-status]");
+  const submitBtn = document.querySelector("[data-submit-btn]");
   const copyEmailButton = document.querySelector("[data-copy-email]");
 
-  const setCopyButtonLabel = (label: string) => {
+  function setCopyButtonLabel(label) {
     if (!(copyEmailButton instanceof HTMLButtonElement)) return;
-
     copyEmailButton.textContent = label;
     window.setTimeout(() => {
       copyEmailButton.textContent = "Copy email";
     }, 1800);
-  };
+  }
 
   if (copyEmailButton instanceof HTMLButtonElement) {
     copyEmailButton.addEventListener("click", async () => {
       const email = copyEmailButton.dataset.email || "";
-
       try {
         if (navigator.clipboard && window.isSecureContext) {
           await navigator.clipboard.writeText(email);
@@ -211,7 +210,6 @@ import { site } from "../data/site";
           document.execCommand("copy");
           fallback.remove();
         }
-
         setCopyButtonLabel("Copied");
       } catch {
         setCopyButtonLabel("Copy failed");
@@ -219,43 +217,66 @@ import { site } from "../data/site";
     });
   }
 
+  function mailtoFallback(fields) {
+    const subject = `Portfolio inquiry from ${fields.name || "a visitor"}`;
+    const body = [
+      `Name: ${fields.name}`,
+      `Email: ${fields.email}`,
+      `Project type: ${fields.projectType}`,
+      `Timeline: ${fields.timeline}`,
+      `Budget range: ${fields.budget}`,
+      "",
+      "Message:",
+      fields.message,
+    ].join("\n");
+
+    window.location.href =
+      `mailto:${toEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
+
   if (form instanceof HTMLFormElement && status instanceof HTMLElement) {
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      if (!form.reportValidity()) return;
-
       const formData = new FormData(form);
-
       if (String(formData.get("website") || "").trim() !== "") {
-        return;
+        return; // honeypot tripped, silently do nothing
       }
 
-      const name = String(formData.get("name") || "").trim();
-      const email = String(formData.get("email") || "").trim();
-      const projectType = String(formData.get("projectType") || "").trim();
-      const timeline = String(formData.get("timeline") || "").trim();
-      const budget = String(formData.get("budget") || "").trim();
-      const message = String(formData.get("message") || "").trim();
+      const fields = {
+        name: String(formData.get("name") || "").trim(),
+        email: String(formData.get("email") || "").trim(),
+        projectType: String(formData.get("projectType") || "").trim(),
+        timeline: String(formData.get("timeline") || "").trim(),
+        budget: String(formData.get("budget") || "").trim(),
+        message: String(formData.get("message") || "").trim(),
+        website: "",
+      };
 
-      const subject = `Portfolio inquiry from ${name || "a visitor"}`;
+      if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = true;
+      status.textContent = "Sending…";
 
-      const body = [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Project type: ${projectType}`,
-        `Timeline: ${timeline}`,
-        `Budget range: ${budget}`,
-        "",
-        "Message:",
-        message,
-      ].join("\n");
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(fields),
+        });
 
-      status.textContent =
-        "Your email application should open now. If it does not, use the direct email or WhatsApp options.";
+        if (!res.ok) throw new Error("send failed");
 
-      window.location.href =
-        `mailto:abulyaman101@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.error || "send failed");
+
+        status.textContent = "Message sent — I'll get back to you soon.";
+        form.reset();
+      } catch {
+        status.textContent =
+          "Direct send isn't available right now — opening your email app instead.";
+        mailtoFallback(fields);
+      } finally {
+        if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = false;
+      }
     });
   }
 </script>

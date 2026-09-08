@@ -4,7 +4,7 @@ import ContactCTA from "../components/ContactCTA.astro";
 import PageVisual from "../components/PageVisual.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import SkillCard from "../components/SkillCard.astro";
-import { education, languages } from "../data/education";
+import { languages } from "../data/education";
 import { skills } from "../data/skills";
 import { site } from "../data/site";
 
@@ -67,6 +67,12 @@ const skillGroups = [
           My strongest interest is in building SaaS products, management
           platforms, dashboards, pSEO systems, and smaller tools that solve
           practical problems without becoming fragile as they grow.
+        </p>
+
+        <p class="story-link">
+          The full path — self-taught fundamentals, CS50/CS75, Laravel, and two
+          real production systems — lives on the
+          <a href="/journey">Learning Journey page</a> →.
         </p>
 
         <div class="inline-facts">
@@ -145,30 +151,6 @@ const skillGroups = [
     </div>
   </section>
 
-  <section class="section section--soft">
-    <div class="container">
-      <SectionHeading
-        eyebrow="Education"
-        title="Academic and independent learning."
-        description="Current education, completed study, and coursework presented accurately."
-      />
-
-      <div class="timeline">
-        {education.map((item) => (
-          <article class="timeline__item">
-            <div class="timeline__year">{item.year}</div>
-
-            <div class="timeline__content">
-              <h3>{item.title}</h3>
-              <p class="timeline__institution">{item.institution}</p>
-              <p>{item.note}</p>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <section class="section">
     <div class="container">
       <SectionHeading
@@ -190,3 +172,26 @@ const skillGroups = [
 
   <ContactCTA />
 </BaseLayout>
+
+<style>
+  .story-link {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .story-link a {
+    font-weight: 800;
+    color: var(--ink);
+    border-bottom: 1px solid var(--bronze);
+    transition: color 160ms ease;
+  }
+
+  .story-link a:hover {
+    color: var(--bronze);
+  }
+</style>

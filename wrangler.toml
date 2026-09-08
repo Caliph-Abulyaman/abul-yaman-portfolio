@@ -1,0 +1,46 @@
+# ------------------------------------------------------------------
+# Cloudflare Pages configuration for abul-yaman-portfolio
+# ------------------------------------------------------------------
+# The site itself is a static Astro build (output: "static"); Cloudflare
+# Pages Functions live in /functions and are deployed alongside /dist.
+#
+# The bindings below come from the portfolio restructure:
+#   - [ai]           Workers AI (free daily allocation) -> powers /api/ask
+#   - ASSISTANT_KV   daily request-cap counter for /api/ask
+#   - CONTACT_TO_EMAIL  where contact form submissions are sent
+#
+# If you configure these in the Pages dashboard instead (Settings ->
+# Functions -> Bindings), this file is still useful for `wrangler pages dev`.
+# The same bindings apply either way.
+
+name = "abul-yaman-portfolio"
+compatibility_date = "2026-09-04"
+pages_build_output_dir = "dist"
+
+# --- Workers AI binding (free tier, no billing) ---
+# Powers /api/ask on the AI Practice page.
+[ai]
+binding = "AI"
+
+# --- KV namespace for the daily request cap counter ---
+# Create it first with:
+#   wrangler kv namespace create ASSISTANT_KV
+# then paste the id it prints below.
+[[kv_namespaces]]
+binding = "ASSISTANT_KV"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+
+# --- Contact form config ---
+# Plain (non-secret) var — who contact form submissions get sent to.
+[vars]
+CONTACT_TO_EMAIL = "abulyaman101@gmail.com"
+
+# RESEND_API_KEY is a SECRET, not a plain var — do not put it in this file.
+# Set it with:
+#   wrangler pages secret put RESEND_API_KEY
+# (or Pages dashboard -> Settings -> Environment variables -> Encrypt)
+#
+# Get a free Resend API key at https://resend.com — free tier is 100
+# emails/day, 3,000/month, no card required. The contact form works fine
+# without this configured too — it just falls back to opening the visitor's
+# email app instead of sending directly.

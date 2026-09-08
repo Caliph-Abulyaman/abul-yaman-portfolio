@@ -1,5 +1,5 @@
 ---
-export type PageVisualVariant = "about" | "projects" | "services" | "resume" | "contact";
+export type PageVisualVariant = "about" | "projects" | "services" | "resume" | "contact" | "journey" | "ai-practice";
 
 interface Props {
   variant: PageVisualVariant;
@@ -127,6 +127,60 @@ const { variant } = Astro.props;
     </div>
   )}
 
+  {variant === "journey" && (
+    <div class="journey-visual">
+      <div class="journey-visual__heading">
+        <span>The road so far</span>
+        <i></i>
+      </div>
+
+      <div class="journey-visual__spine">
+        <div class="journey-visual__line"></div>
+
+        <span class="journey-visual__node journey-visual__node--one journey-visual__node--left">
+          <b>01</b><em>Grade 9</em>
+        </span>
+        <span class="journey-visual__node journey-visual__node--two">
+          <b>02</b><em>CS50 / CS75</em>
+        </span>
+        <span class="journey-visual__node journey-visual__node--three journey-visual__node--left">
+          <b>03</b><em>Laravel</em>
+        </span>
+        <span class="journey-visual__node journey-visual__node--four">
+          <b>04</b><em>Production systems</em>
+        </span>
+        <span class="journey-visual__node journey-visual__node--five journey-visual__node--left">
+          <b>05</b><em>DevOps track</em>
+        </span>
+      </div>
+
+      <p>Not handed to me — each milestone built by hand.</p>
+    </div>
+  )}
+
+  {variant === "ai-practice" && (
+    <div class="ai-visual">
+      <div class="ai-visual__heading">
+        <span>Methodology, not autopilot</span>
+        <i></i>
+      </div>
+
+      <div class="ai-visual__orbit">
+        <div class="ai-visual__core">JUDGMENT</div>
+        <span class="ai-visual__node ai-visual__node--one">Explain → Hint → Task</span>
+        <span class="ai-visual__node ai-visual__node--two">Friction first</span>
+        <span class="ai-visual__node ai-visual__node--three">Verify, don't assume</span>
+        <span class="ai-visual__node ai-visual__node--four">Errors drilled</span>
+      </div>
+
+      <div class="ai-visual__footer">
+        <span>I write every line</span>
+        <i></i>
+        <span>No unsolicited code</span>
+      </div>
+    </div>
+  )}
+
   {variant === "contact" && (
     <div class="contact-visual">
       <div class="contact-visual__heading">
@@ -199,7 +253,7 @@ const { variant } = Astro.props;
     align-items: center;
     gap: 0.55rem;
     color: rgb(248 245 238 / 68%);
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.54rem;
     font-weight: 800;
     letter-spacing: 0.12em;
@@ -260,7 +314,7 @@ const { variant } = Astro.props;
     background: #121a27;
     box-shadow: 0 0 0 0.65rem rgb(18 26 39 / 48%);
     color: #f8f5ee;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.58rem;
     font-weight: 900;
     letter-spacing: 0.09em;
@@ -274,7 +328,7 @@ const { variant } = Astro.props;
     border-radius: 999px;
     background: rgb(16 24 38 / 84%);
     color: #f8f5ee;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.5rem;
     font-weight: 800;
     letter-spacing: 0.04em;
@@ -309,7 +363,7 @@ const { variant } = Astro.props;
 
   .projects-visual__label {
     color: var(--bronze);
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.55rem;
     font-weight: 900;
     letter-spacing: 0.12em;
@@ -329,7 +383,7 @@ const { variant } = Astro.props;
     top: 0.55rem;
     left: 0.65rem;
     z-index: 2;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.44rem;
     font-weight: 900;
     letter-spacing: 0.1em;
@@ -471,7 +525,7 @@ const { variant } = Astro.props;
     bottom: 0.72rem;
     margin: 0;
     color: var(--muted);
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.47rem;
     font-weight: 800;
     letter-spacing: 0.06em;
@@ -499,7 +553,7 @@ const { variant } = Astro.props;
     align-items: center;
     gap: 0.55rem;
     color: var(--bronze);
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.56rem;
     font-weight: 900;
     letter-spacing: 0.11em;
@@ -549,7 +603,7 @@ const { variant } = Astro.props;
 
   .services-visual__flow span {
     color: var(--bronze);
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.53rem;
     font-weight: 900;
     letter-spacing: 0.08em;
@@ -557,7 +611,7 @@ const { variant } = Astro.props;
 
   .services-visual__flow strong {
     color: var(--ink);
-    font-family: "DM Serif Display", Georgia, serif;
+    font-family: var(--font-display);
     font-size: 1.05rem;
     font-weight: 400;
   }
@@ -566,7 +620,7 @@ const { variant } = Astro.props;
     align-self: end;
     margin: 0;
     color: var(--muted);
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.6rem;
     font-weight: 800;
   }
@@ -602,7 +656,7 @@ const { variant } = Astro.props;
     border: 1px solid rgb(248 245 238 / 35%);
     border-radius: 0.45rem;
     color: #f8f5ee;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.66rem;
     font-weight: 900;
   }
@@ -610,7 +664,7 @@ const { variant } = Astro.props;
   .resume-visual__top p {
     margin: 0;
     color: rgb(248 245 238 / 59%);
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.51rem;
     font-weight: 800;
     letter-spacing: 0.1em;
@@ -627,7 +681,7 @@ const { variant } = Astro.props;
 
   .resume-visual > strong {
     color: #d7bc8e;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.65rem;
     letter-spacing: 0.07em;
     text-transform: uppercase;
@@ -649,7 +703,7 @@ const { variant } = Astro.props;
 
   .resume-visual dt {
     color: rgb(248 245 238 / 48%);
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.51rem;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -659,7 +713,7 @@ const { variant } = Astro.props;
   .resume-visual dd {
     margin: 0;
     color: rgb(248 245 238 / 83%);
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.59rem;
     font-weight: 700;
   }
@@ -701,7 +755,7 @@ const { variant } = Astro.props;
     align-items: center;
     gap: 0.55rem;
     color: var(--bronze);
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.56rem;
     font-weight: 900;
     letter-spacing: 0.1em;
@@ -734,7 +788,7 @@ const { variant } = Astro.props;
 
   .contact-visual li > span {
     color: var(--bronze);
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.57rem;
     font-weight: 900;
   }
@@ -742,7 +796,7 @@ const { variant } = Astro.props;
   .contact-visual strong,
   .contact-visual small {
     display: block;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: var(--font-body);
   }
 
   .contact-visual strong {
@@ -756,18 +810,297 @@ const { variant } = Astro.props;
     font-size: 0.62rem;
   }
 
+  .page-visual--journey {
+    padding: 1.1rem;
+    background:
+      radial-gradient(circle at 82% 14%, rgb(167 122 59 / 15%), transparent 26%),
+      linear-gradient(150deg, #f7f3ea, #e9e4da);
+  }
+
+  .journey-visual {
+    position: relative;
+    min-height: 22rem;
+    padding: 1rem;
+    overflow: hidden;
+    border: 1px solid rgb(16 24 38 / 9%);
+    border-radius: 1rem;
+    background:
+      linear-gradient(rgb(16 24 38 / 4%) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(16 24 38 / 4%) 1px, transparent 1px),
+      #f7f4ed;
+    background-size: 1.5rem 1.5rem;
+  }
+
+  .journey-visual__heading {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--bronze);
+    font-family: var(--font-body);
+    font-size: 0.56rem;
+    font-weight: 900;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  .journey-visual__heading i {
+    width: 1.5rem;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .journey-visual__spine {
+    position: absolute;
+    inset: 3.7rem 1.5rem 2.2rem;
+  }
+
+  .journey-visual__line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: linear-gradient(180deg, var(--bronze), rgb(167 122 59 / 25%));
+    transform: translateX(-50%);
+  }
+
+  .journey-visual__node {
+    position: absolute;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    white-space: nowrap;
+    transform: translate(-50%, -50%);
+  }
+
+  .journey-visual__node b {
+    z-index: 2;
+    display: grid;
+    width: 2.05rem;
+    aspect-ratio: 1;
+    place-items: center;
+    border: 1px solid #c69a58;
+    border-radius: 50%;
+    background: #fffdf8;
+    box-shadow: 0 10px 20px rgb(16 24 38 / 16%);
+    color: var(--bronze);
+    font-family: var(--font-body);
+    font-size: 0.55rem;
+    font-weight: 900;
+  }
+
+  .journey-visual__node em {
+    position: relative;
+    padding: 0.4rem 0.58rem;
+    border: 1px solid rgb(16 24 38 / 10%);
+    border-radius: 0.5rem;
+    background: #fffdf8;
+    box-shadow: 0 8px 18px rgb(16 24 38 / 8%);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 0.55rem;
+    font-style: normal;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+  }
+
+  .journey-visual__node em::after {
+    position: absolute;
+    top: 50%;
+    left: -0.8rem;
+    width: 0.8rem;
+    height: 1px;
+    background: rgb(167 122 59 / 50%);
+    content: "";
+    transform: translateY(-50%);
+  }
+
+  .journey-visual__node--left {
+    flex-direction: row-reverse;
+  }
+
+  .journey-visual__node--left em::after {
+    left: auto;
+    right: -0.8rem;
+  }
+
+  .journey-visual__node--one   { top: 0%; }
+  .journey-visual__node--two   { top: 25%; }
+  .journey-visual__node--three { top: 50%; }
+  .journey-visual__node--four  { top: 75%; }
+  .journey-visual__node--five  { top: 98%; }
+
+  .journey-visual > p {
+    position: absolute;
+    right: 1rem;
+    bottom: 0.72rem;
+    margin: 0;
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-size: 0.47rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .page-visual--ai-practice {
+    padding: 1.1rem;
+    background:
+      radial-gradient(circle at 18% 86%, rgb(167 122 59 / 16%), transparent 28%),
+      linear-gradient(145deg, #101a2a 0%, #152335 64%, #213044 100%);
+  }
+
+  .ai-visual {
+    position: relative;
+    display: grid;
+    min-height: 22rem;
+    padding: 1rem;
+    overflow: hidden;
+    border: 1px solid rgb(248 245 238 / 12%);
+    border-radius: 1rem;
+    background:
+      linear-gradient(rgb(248 245 238 / 5%) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(248 245 238 / 5%) 1px, transparent 1px),
+      radial-gradient(circle at 50% 48%, rgb(167 122 59 / 16%), transparent 34%);
+    background-size: 1.45rem 1.45rem, 1.45rem 1.45rem, auto;
+  }
+
+  .ai-visual__heading,
+  .ai-visual__footer {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: rgb(248 245 238 / 68%);
+    font-family: var(--font-body);
+    font-size: 0.54rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .ai-visual__heading i,
+  .ai-visual__footer i {
+    display: block;
+    width: 1.4rem;
+    height: 1px;
+    background: #d7bc8e;
+  }
+
+  .ai-visual__footer {
+    align-self: end;
+    justify-self: end;
+    font-size: 0.48rem;
+  }
+
+  .ai-visual__orbit {
+    position: absolute;
+    inset: 2.5rem 2rem 2.1rem;
+    border: 1px solid rgb(248 245 238 / 15%);
+    border-radius: 50%;
+  }
+
+  .ai-visual__orbit::before,
+  .ai-visual__orbit::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    height: 1px;
+    background: rgb(248 245 238 / 14%);
+    content: "";
+    transform-origin: center;
+  }
+
+  .ai-visual__orbit::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .ai-visual__orbit::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .ai-visual__core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    width: 5.8rem;
+    aspect-ratio: 1;
+    place-items: center;
+    border: 1px solid #d7bc8e;
+    border-radius: 50%;
+    background: #121a27;
+    box-shadow: 0 0 0 0.65rem rgb(18 26 39 / 48%);
+    color: #f8f5ee;
+    font-family: var(--font-body);
+    font-size: 0.55rem;
+    font-weight: 900;
+    letter-spacing: 0.09em;
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
+
+  .ai-visual__node {
+    position: absolute;
+    z-index: 2;
+    padding: 0.46rem 0.56rem;
+    border: 1px solid rgb(248 245 238 / 21%);
+    border-radius: 999px;
+    background: rgb(16 24 38 / 84%);
+    color: #f8f5ee;
+    font-family: var(--font-body);
+    font-size: 0.5rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .ai-visual__node--one {
+    top: -0.45rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .ai-visual__node--two {
+    top: 36%;
+    right: -0.6rem;
+  }
+
+  .ai-visual__node--three {
+    bottom: -0.35rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .ai-visual__node--four {
+    top: 36%;
+    left: -0.6rem;
+  }
+
   @media (max-width: 720px) {
     .page-visual { min-height: 20rem; }
     .about-visual,
     .projects-visual,
     .services-visual,
     .resume-visual,
-    .contact-visual { min-height: 18rem; }
+    .contact-visual,
+    .journey-visual,
+    .ai-visual { min-height: 18rem; }
     .atlas-card--portal { left: 0.85rem; }
     .atlas-card--pseo { right: 0.85rem; }
     .atlas-card--fantivers { left: 17%; }
     .services-visual__flow { gap: 0.45rem; }
     .services-visual__flow li { min-height: 4.25rem; padding: 0.58rem; }
     .resume-visual h2 { font-size: 2.5rem; }
+    .journey-visual__node { gap: 0.45rem; }
+    .journey-visual__node b { width: 1.75rem; font-size: 0.5rem; }
+    .journey-visual__node em { font-size: 0.5rem; padding: 0.36rem 0.5rem; }
+    .ai-visual__node { font-size: 0.45rem; padding: 0.4rem 0.5rem; }
+    .ai-visual__node--two { right: -0.3rem; }
+    .ai-visual__node--four { left: -0.3rem; }
   }
 </style>

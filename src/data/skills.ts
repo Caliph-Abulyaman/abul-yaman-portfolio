@@ -1,10 +1,12 @@
-export type SkillLevel = "Strong" | "Intermediate";
+export type SkillLevel = "Strong" | "Intermediate" | "Close to Advanced";
 
 export interface Skill {
   name: string;
   level: SkillLevel;
   category: "Development" | "Systems" | "Product";
   description: string;
+  /** Marks skills currently being built deliberately via the self-run track. */
+  tier?: "learning";
 }
 
 export const skills: Skill[] = [
@@ -45,10 +47,43 @@ export const skills: Skill[] = [
     description: "Structured relational data work and database-aware application design.",
   },
   {
-    name: "Git",
-    level: "Intermediate",
+    name: "Docker",
+    level: "Close to Advanced",
     category: "Systems",
-    description: "Version control, repository workflows, and disciplined project iteration.",
+    description: "Containers, images, Compose, healthchecks, and production deployment patterns from deliberate, hands-on practice.",
+  },
+  {
+    name: "CI/CD",
+    level: "Close to Advanced",
+    category: "Systems",
+    description: "Automated pipelines with GitHub Actions, test matrices, secrets management, and release engineering.",
+  },
+  {
+    name: "Node.js",
+    level: "Intermediate",
+    category: "Development",
+    description: "Server-side JavaScript and API work being built as part of a current full-stack track.",
+    tier: "learning",
+  },
+  {
+    name: "React",
+    level: "Intermediate",
+    category: "Development",
+    description: "Component-based interface work being built as part of a current full-stack track.",
+    tier: "learning",
+  },
+  {
+    name: "Next.js",
+    level: "Intermediate",
+    category: "Development",
+    description: "Application framework on top of React, part of the current full-stack track.",
+    tier: "learning",
+  },
+  {
+    name: "Git & GitHub",
+    level: "Close to Advanced",
+    category: "Systems",
+    description: "Version control, branching workflows, pull requests, and disciplined project iteration.",
   },
   {
     name: "Deployment & Hosting",

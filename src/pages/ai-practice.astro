@@ -1,0 +1,384 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+import PageVisual from "../components/PageVisual.astro";
+import ProjectAssistant from "../components/ProjectAssistant.astro";
+import {
+  aiPracticeThesis,
+  methodology,
+  drillExamples,
+  boundaries,
+  aiInPracticeTieIn,
+} from "../data/ai-practice";
+---
+
+<BaseLayout
+  title="AI Practice"
+  description="How Abul Yaman actually works with AI: a structured, multi-course self-directed curriculum with a hard no-unsolicited-code rule, real drills, and judgment that stays human."
+>
+  <section class="page-hero section page-hero--ai-practice">
+    <div class="container page-hero__grid">
+      <div class="page-hero__content">
+        <p class="eyebrow">{aiPracticeThesis.eyebrow}</p>
+        <h1>{aiPracticeThesis.title}</h1>
+        <p class="page-hero__lead">{aiPracticeThesis.lead}</p>
+      </div>
+
+      <div class="page-hero__visual">
+        <PageVisual variant="ai-practice" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <p class="mini-label">The methodology</p>
+      <h2 class="section-title">How each course actually runs.</h2>
+
+      <div class="methodology-list">
+        {methodology.map((m) => (
+          <div class="methodology-item">
+            <span class="methodology-item__step">{m.step}</span>
+            <div>
+              <h3>{m.title}</h3>
+              <p>{m.detail}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="mini-label">Real evidence, not claims</p>
+      <h2 class="section-title">Actual drills from the curriculum.</h2>
+
+      <div class="drill-grid">
+        {drillExamples.map((d) => (
+          <article class="drill-card">
+            <h3>{d.title}</h3>
+            <p class="drill-card__label">Context</p>
+            <p>{d.context}</p>
+            <p class="drill-card__label">Outcome</p>
+            <p>{d.outcome}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <p class="mini-label">Where the line is</p>
+      <h2 class="section-title">Judgment stays mine.</h2>
+
+      <div class="boundary-grid">
+        {boundaries.map((b) => (
+          <div class="boundary-item">
+            <h3>{b.title}</h3>
+            <p>{b.detail}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="tie-in">{aiInPracticeTieIn}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="mini-label">Try it</p>
+      <h2 class="section-title">Ask about the projects on this site.</h2>
+      <p class="assistant-intro">
+        A small, scoped assistant answering questions about the projects and
+        background on this portfolio — running on Cloudflare Workers AI's
+        free tier, with a static fallback if that's ever unavailable. It only
+        knows what's on this site.
+      </p>
+
+      <div class="assistant-grid">
+        <aside class="assistant-visual" aria-hidden="true">
+          <div class="assistant-visual__window">
+            <div class="assistant-visual__bar">
+              <i></i><i></i><i></i>
+              <span>Project assistant</span>
+            </div>
+
+            <div class="assistant-visual__body">
+              <div class="assistant-visual__bubble assistant-visual__bubble--user">
+                What did you actually build on Huzaifa Portal?
+              </div>
+              <div class="assistant-visual__bubble assistant-visual__bubble--bot">
+                A real student management system in Laravel — deployed to a
+                self-managed Hetzner VPS, with live enrolled students.
+              </div>
+              <div class="assistant-visual__bubble assistant-visual__bubble--typing">
+                <i></i><i></i><i></i>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <ProjectAssistant />
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA />
+</BaseLayout>
+
+<style>
+  .section-title {
+    max-width: 32rem;
+    margin-bottom: 2.5rem;
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  }
+
+  .methodology-list {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .methodology-item {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .methodology-item__step {
+    padding-top: 0.15rem;
+    color: var(--bronze);
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+  }
+
+  .methodology-item h3 {
+    margin-bottom: 0.4rem;
+    font-size: 1.25rem;
+  }
+
+  .methodology-item p {
+    max-width: 42rem;
+    margin: 0;
+    font-size: 0.86rem;
+    line-height: 1.68;
+  }
+
+  .drill-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .drill-card {
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--surface);
+  }
+
+  .drill-card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .drill-card__label {
+    margin-bottom: 0.3rem;
+    color: var(--bronze);
+    font-size: 0.6rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .drill-card p:not(.drill-card__label) {
+    margin-bottom: 1rem;
+    font-size: 0.83rem;
+    line-height: 1.62;
+  }
+
+  .drill-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .boundary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.9rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .boundary-item {
+    padding: 1.4rem;
+    border-left: 2px solid var(--olive);
+    background: rgb(102 112 90 / 6%);
+  }
+
+  .boundary-item h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .boundary-item p {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+
+  .tie-in {
+    max-width: 44rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .assistant-intro {
+    max-width: 38rem;
+    margin-bottom: 2rem;
+    font-size: 0.88rem;
+  }
+
+  .assistant-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: center;
+  }
+
+  .assistant-visual {
+    min-width: 0;
+  }
+
+  .assistant-visual__window {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 1.15rem;
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+  }
+
+  .assistant-visual__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.8rem 1rem;
+    background: #152031;
+  }
+
+  .assistant-visual__bar i {
+    display: block;
+    width: 0.55rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: rgb(248 245 238 / 26%);
+  }
+
+  .assistant-visual__bar i:nth-child(1) { background: #d1615f; }
+  .assistant-visual__bar i:nth-child(2) { background: #d9a441; }
+  .assistant-visual__bar i:nth-child(3) { background: #7aa07b; }
+
+  .assistant-visual__bar span {
+    margin-left: 0.4rem;
+    color: rgb(248 245 238 / 64%);
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .assistant-visual__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 1.25rem;
+  }
+
+  .assistant-visual__bubble {
+    max-width: 88%;
+    padding: 0.75rem 0.95rem;
+    border-radius: 0.85rem;
+    font-size: 0.84rem;
+    line-height: 1.6;
+    box-shadow: 0 6px 16px rgb(16 24 38 / 5%);
+  }
+
+  .assistant-visual__bubble--user {
+    align-self: flex-end;
+    border-bottom-right-radius: 0.3rem;
+    background: var(--ink);
+    color: var(--light);
+  }
+
+  .assistant-visual__bubble--bot {
+    align-self: flex-start;
+    border-bottom-left-radius: 0.3rem;
+    border: 1px solid rgb(167 122 59 / 32%);
+    background: rgb(167 122 59 / 9%);
+    color: var(--ink);
+  }
+
+  .assistant-visual__bubble--typing {
+    display: flex;
+    align-items: center;
+    gap: 0.32rem;
+    align-self: flex-start;
+    padding: 0.8rem 0.95rem;
+    border-radius: 0.85rem;
+    border-bottom-left-radius: 0.3rem;
+    background: var(--surface-soft);
+  }
+
+  .assistant-visual__bubble--typing i {
+    width: 0.4rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--bronze);
+    animation: assistant-dot 1.2s ease-in-out infinite;
+  }
+
+  .assistant-visual__bubble--typing i:nth-child(2) { animation-delay: 0.15s; }
+  .assistant-visual__bubble--typing i:nth-child(3) { animation-delay: 0.3s; }
+
+  @keyframes assistant-dot {
+    0%,
+    60%,
+    100% {
+      opacity: 0.45;
+      transform: translateY(0);
+    }
+
+    30% {
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+  }
+
+  @media (max-width: 980px) {
+    .assistant-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .assistant-visual {
+      max-width: 40rem;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .drill-grid,
+    .boundary-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .methodology-item {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+</style>

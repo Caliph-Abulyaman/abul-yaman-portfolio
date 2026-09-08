@@ -17,10 +17,15 @@ export const site = {
     "Computer Science applicant from Khyber Pakhtunkhwa, Pakistan, focused on modern Laravel applications, scalable product systems, AI-assisted development workflows, and refined web experiences.",
 };
 
+// Primary nav — kept to 7 items max before it needs to collapse into a
+// "More" group. Learning Journey and AI Practice are top-level per your
+// call to keep them separate rather than folding into About.
 export const navigation = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Projects", href: "/projects" },
+  { label: "Journey", href: "/journey" },
+  { label: "AI Practice", href: "/ai-practice" },
   { label: "Services", href: "/services" },
   { label: "Resume", href: "/resume" },
   { label: "Contact", href: "/contact", emphasized: true },

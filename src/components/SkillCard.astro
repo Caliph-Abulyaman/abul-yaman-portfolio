@@ -8,10 +8,10 @@ interface Props {
 const { skill } = Astro.props;
 ---
 
-<article class="skill-card">
+<article class:list={["skill-card", skill.tier === "learning" && "skill-card--learning"]}>
   <div class="skill-card__top">
     <h3>{skill.name}</h3>
-    <span>{skill.level}</span>
+    <span>{skill.level}{skill.tier === "learning" && <em> · Learning</em>}</span>
   </div>
 
   <p>{skill.description}</p>

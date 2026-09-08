@@ -1,0 +1,320 @@
+---
+// Client-side only. Calls /api/ask (a Cloudflare Pages/Workers Function
+// backed by Workers AI's free daily allocation). If that call fails for
+// ANY reason — rate limit, binding not configured, network error — the
+// widget falls back to pure client-side static FAQ matching against
+// staticFaq below. This guarantees zero possibility of a billed API call
+// and zero possibility of the widget going fully dark.
+const suggestedPrompts = [
+  "What did you actually build on Huzaifa Portal?",
+  "Why hasn't the pSEO Engine shipped yet?",
+  "What's a real drill from your DevOps course?",
+  "What are you learning right now?",
+];
+---
+
+<div class="assistant" data-assistant>
+  <p class="assistant__eyebrow">Project assistant</p>
+
+  <div class="assistant__log" data-assistant-log aria-live="polite">
+    <div class="assistant__message assistant__message--bot">
+      Ask me something about the projects or background on this site —
+      Huzaifa Portal, the pSEO Engine, the DevOps curriculum, or how the AI
+      practice actually works.
+    </div>
+  </div>
+
+  <div class="assistant__prompts" data-assistant-prompts>
+    {suggestedPrompts.map((p) => (
+      <button type="button" class="assistant__prompt" data-prompt={p}>{p}</button>
+    ))}
+  </div>
+
+  <form class="assistant__form" data-assistant-form>
+    <input
+      type="text"
+      name="question"
+      placeholder="Ask a question…"
+      aria-label="Ask a question about this portfolio"
+      autocomplete="off"
+      data-assistant-input
+    />
+    <button type="submit" class="button button--primary">Ask</button>
+  </form>
+
+  <p class="assistant__note" data-assistant-note></p>
+</div>
+
+<script>
+  interface FaqEntry {
+    keywords: string[];
+    answer: string;
+  }
+
+  // Zero-cost fallback. Kept in sync conceptually with ai-practice.ts and
+  // projects.ts content — if those change meaningfully, update this too.
+  const staticFaq: FaqEntry[] = [
+    {
+      keywords: ["huzaifa", "student", "management"],
+      answer:
+        "Huzaifa Portal is a real, deployed student management system built solo in Laravel for an English-learning business — public course pages, guided enrolment, a student portal, session scheduling, payments, and a full admin workspace, deployed on a self-managed Hetzner VPS. It's live with real enrolled students.",
+    },
+    {
+      keywords: ["pseo", "seo", "local", "city"],
+      answer:
+        "The pSEO Engine is an automated system for generating local-service pages per city, built to avoid the thin-content trap of naive page generation — coverage setup, controlled generation batches, and explicit quality checks before anything publishes. It's never been publicly released, deliberately, until the quality bar is consistently met.",
+    },
+    {
+      keywords: ["drill", "devops", "docker", "git", "ci", "cicd"],
+      answer:
+        "One concrete example: a Dockerfile's COPY order was deliberately reversed to force a full build-cache invalidation, then fixed, with the cache hit observed directly — not just described. Another: a real OOM-kill was chased down by comparing the kernel's own memory accounting against a script's internal counter after an first attempt failed silently.",
+    },
+    {
+      keywords: ["learning", "now", "current", "full-stack", "fullstack", "next"],
+      answer:
+        "Currently mid-way through a self-directed full-stack track — JS/TS fundamentals, raw SQL before Prisma, Node/Express/Redis/queues, React, Next.js, and NestJS — with Kubernetes (the next planned DevOps course) deliberately paused until that's complete.",
+    },
+    {
+      keywords: ["ai", "claude", "how", "work with ai", "methodology"],
+      answer:
+        "AI is used as a structured instructor across real multi-course curricula — overview, then explain/hint/small-task per module, with the project built chunk by chunk. The AI never writes unsolicited code; every line is written and run by hand. Full detail is on this page above.",
+    },
+    {
+      keywords: ["fantivers"],
+      answer:
+        "Fantivers is an early-stage collaborative storytelling platform, currently in product design and planning rather than implementation — working through core mechanics before committing to a build.",
+    },
+    {
+      keywords: ["contact", "hire", "email", "reach"],
+      answer:
+        "Best reached via the Contact page — direct email and WhatsApp are both listed there, or use the form.",
+    },
+  ];
+
+  function matchStaticFaq(question: string): string {
+    const q = question.toLowerCase();
+    let best: FaqEntry | null = null;
+    let bestScore = 0;
+
+    for (const entry of staticFaq) {
+      const score = entry.keywords.filter((k) => q.includes(k)).length;
+      if (score > bestScore) {
+        bestScore = score;
+        best = entry;
+      }
+    }
+
+    if (best) return best.answer;
+
+    return "I don't have a good answer for that from what's on this site yet — the Projects and Learning Journey pages have the fuller detail, or reach out directly via Contact.";
+  }
+
+  const root = document.querySelector<HTMLElement>("[data-assistant]");
+  if (root) {
+    const log = root.querySelector<HTMLElement>("[data-assistant-log]");
+    const form = root.querySelector<HTMLFormElement>("[data-assistant-form]");
+    const input = root.querySelector<HTMLInputElement>("[data-assistant-input]");
+    const note = root.querySelector<HTMLElement>("[data-assistant-note]");
+    const promptButtons = root.querySelectorAll<HTMLButtonElement>("[data-prompt]");
+
+    function appendMessage(text: string, from: "user" | "bot") {
+      if (!log) return;
+      const el = document.createElement("div");
+      el.className = `assistant__message assistant__message--${from}`;
+      el.textContent = text;
+      log.appendChild(el);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    async function ask(question: string) {
+      appendMessage(question, "user");
+      if (note) note.textContent = "";
+
+      // Try the live edge-AI endpoint first. Any failure — network error,
+      // non-200, rate limit, missing binding — falls straight through to
+      // the static matcher. No retry loop, no dangling spinner.
+      try {
+        const res = await fetch("/api/ask", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question }),
+        });
+
+        if (!res.ok) throw new Error(`status ${res.status}`);
+
+        const data = await res.json();
+        if (typeof data.answer === "string" && data.answer.trim()) {
+          appendMessage(data.answer, "bot");
+          if (data.source === "fallback" && note) {
+            note.textContent = "Answered from the static knowledge base today.";
+          }
+          return;
+        }
+        throw new Error("empty answer");
+      } catch {
+        appendMessage(matchStaticFaq(question), "bot");
+        if (note) {
+          note.textContent = "Answered from the static knowledge base.";
+        }
+      }
+    }
+
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const value = input?.value.trim();
+      if (!value) return;
+      ask(value);
+      if (input) input.value = "";
+    });
+
+    promptButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const prompt = btn.dataset.prompt;
+        if (prompt) ask(prompt);
+      });
+    });
+  }
+</script>
+
+<style>
+  .assistant {
+    max-width: 40rem;
+    padding: 1.75rem;
+    border: 1px solid var(--border);
+    border-radius: 1.2rem;
+    background: var(--surface);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .assistant__eyebrow {
+    margin: 0 0 1rem;
+    color: var(--bronze);
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .assistant__log {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-height: 21rem;
+    margin-bottom: 1.15rem;
+    overflow-y: auto;
+    padding-right: 0.2rem;
+  }
+
+  .assistant__message {
+    max-width: 88%;
+    padding: 0.75rem 0.95rem;
+    border-radius: 0.85rem;
+    font-size: 0.84rem;
+    line-height: 1.6;
+    box-shadow: 0 6px 16px rgb(16 24 38 / 5%);
+  }
+
+  .assistant__message--bot {
+    align-self: flex-start;
+    border-bottom-left-radius: 0.3rem;
+    background: var(--surface-soft);
+    color: var(--ink);
+  }
+
+  .assistant__message--user {
+    align-self: flex-end;
+    border-bottom-right-radius: 0.3rem;
+    background: var(--ink);
+    color: var(--light);
+  }
+
+  .assistant__prompts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 1.15rem;
+  }
+
+  .assistant__prompt {
+    padding: 0.42rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1.25;
+    transition:
+      border-color 160ms ease,
+      color 160ms ease,
+      background 160ms ease;
+  }
+
+  .assistant__prompt:hover,
+  .assistant__prompt:focus-visible {
+    border-color: var(--bronze);
+    background: rgb(167 122 59 / 7%);
+    color: var(--ink);
+  }
+
+  .assistant__form {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+
+  .assistant__form input {
+    flex: 1;
+    min-width: 0;
+    min-height: 2.9rem;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 0.7rem;
+    background: #fffefa;
+    font-size: 0.84rem;
+    transition:
+      border-color 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+  .assistant__form input:focus,
+  .assistant__form input:focus-visible {
+    border-color: var(--bronze);
+    box-shadow: 0 0 0 3px rgb(167 122 59 / 14%);
+    outline: none;
+  }
+
+  .assistant__form .button {
+    flex: none;
+    min-height: 2.9rem;
+    padding: 0 1.2rem;
+  }
+
+  .assistant__note {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 1.15rem;
+    margin: 1rem 0 0;
+    padding: 0.55rem 0.75rem;
+    border-radius: 0.6rem;
+    background: rgb(236 232 223 / 55%);
+    color: var(--muted);
+    font-size: 0.66rem;
+    font-style: italic;
+    line-height: 1.45;
+  }
+
+  .assistant__note::before {
+    flex: none;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--bronze);
+    content: "";
+  }
+
+  .assistant__note:empty {
+    display: none;
+  }
+</style>

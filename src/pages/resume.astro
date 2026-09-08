@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Button from "../components/Button.astro";
+import ContactCTA from "../components/ContactCTA.astro";
 import PageVisual from "../components/PageVisual.astro";
 import { education, languages } from "../data/education";
 import { projects } from "../data/projects";
@@ -90,7 +91,7 @@ import { site } from "../data/site";
               <article>
                 <div>
                   <h3>{project.title}</h3>
-                  <span>{project.status}</span>
+                  <span>{project.statusLabel}</span>
                 </div>
 
                 <p>{project.description}</p>
@@ -131,4 +132,6 @@ import { site } from "../data/site";
       </div>
     </div>
   </section>
+
+  <ContactCTA />
 </BaseLayout>

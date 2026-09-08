@@ -1,0 +1,196 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContactCTA from "../../components/ContactCTA.astro";
+import ProjectPreview from "../../components/ProjectPreview.astro";
+import StatusBadge from "../../components/StatusBadge.astro";
+import { projects } from "../../data/projects";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<BaseLayout
+  title={project.title}
+  description={project.description}
+>
+  <section class="case-hero section">
+    <div class="container">
+      <a class="back-link" href="/projects">← All projects</a>
+
+      <div class="case-hero__grid">
+        <div class="case-hero__content">
+          <div class="case-hero__meta">
+            <StatusBadge label={project.statusLabel} tone={project.accent} />
+            <span>{project.type}</span>
+          </div>
+
+          <h1>{project.title}</h1>
+          <p class="case-hero__tagline">{project.tagline}</p>
+
+          <div class="tag-list">
+            {project.stack.map((item) => (
+              <span class="tag">{item}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="case-hero__visual">
+          <ProjectPreview variant={project.previewVariant} />
+        </div>
+      </div>
+
+      {project.highlights.length > 0 && (
+        <div class="highlight-row">
+          {project.highlights.map((h) => (
+            <div class="highlight-chip">
+              <span>{h.label}</span>
+              <strong>{h.value}</strong>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container case-body">
+      <div class="case-block">
+        <p class="mini-label">The problem</p>
+        <p>{project.problem}</p>
+      </div>
+
+      <div class="case-block">
+        <p class="mini-label">The approach</p>
+        <p>{project.approach}</p>
+      </div>
+
+      <div class="case-block">
+        <p class="mini-label">What it does</p>
+        <ul class="feature-list feature-list--wide">
+          {project.features.map((feature) => (
+            <li>{feature}</li>
+          ))}
+        </ul>
+      </div>
+
+      <p class="privacy-note">
+        <strong>Project note:</strong> {project.privacyNote}
+      </p>
+    </div>
+  </section>
+
+  <ContactCTA />
+</BaseLayout>
+
+<style>
+  .back-link {
+    display: inline-flex;
+    margin-bottom: 2rem;
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: 800;
+  }
+
+  .back-link:hover {
+    color: var(--bronze);
+  }
+
+  .case-hero__grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .case-hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 1rem;
+  }
+
+  .case-hero__meta span:not(.status-badge) {
+    color: var(--muted);
+    font-size: 0.64rem;
+    font-weight: 800;
+  }
+
+  .case-hero__tagline {
+    max-width: 34rem;
+    margin-bottom: 1.4rem;
+    font-size: 1rem;
+  }
+
+  .case-hero__visual :global(.project-preview) {
+    min-height: 260px;
+  }
+
+  .highlight-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.7rem;
+    margin-top: 2.5rem;
+  }
+
+  .highlight-chip {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.65rem;
+    background: var(--surface);
+  }
+
+  .highlight-chip span {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--muted);
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .highlight-chip strong {
+    color: var(--ink);
+    font-size: 0.85rem;
+  }
+
+  .case-body {
+    display: grid;
+    gap: 2.6rem;
+    max-width: 52rem;
+  }
+
+  .case-block p:not(.mini-label) {
+    max-width: 46rem;
+    font-size: 0.96rem;
+    line-height: 1.75;
+  }
+
+  .feature-list--wide {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 980px) {
+    .case-hero__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .highlight-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .feature-list--wide {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

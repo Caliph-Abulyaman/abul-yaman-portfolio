@@ -2,9 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContactCTA from "../components/ContactCTA.astro";
 import PageVisual from "../components/PageVisual.astro";
-import ProjectPreview from "../components/ProjectPreview.astro";
-import StatusBadge from "../components/StatusBadge.astro";
-import { projects } from "../data/projects";
+import ProjectCard from "../components/ProjectCard.astro";
+import { featuredProjects, otherProjects } from "../data/projects";
 ---
 
 <BaseLayout
@@ -15,11 +14,12 @@ import { projects } from "../data/projects";
     <div class="container page-hero__grid">
       <div class="page-hero__content">
         <p class="eyebrow">Projects</p>
-        <h1>Projects built around real systems and long-term structure.</h1>
+        <h1>Real systems, presented honestly.</h1>
         <p class="page-hero__lead">
-          A selection of private client work, internal tools, and product work
-          currently in development. Each project is presented honestly without
-          exposing private code, client data, or unreleased product mechanics.
+          A selection of private client work and product work in progress.
+          Each card opens a full case study — the problem, the approach, and
+          what shipped — without exposing private code, client data, or
+          unreleased mechanics.
         </p>
       </div>
 
@@ -29,82 +29,55 @@ import { projects } from "../data/projects";
     </div>
   </section>
 
-  <div class="project-index-band">
-    <nav class="container project-index" aria-label="Project index">
-      <span>Jump to</span>
-      <div>
-        {projects.map((project) => (
-          <a href={`#${project.slug}`}>{project.title}</a>
-        ))}
-      </div>
-    </nav>
-  </div>
-
-  <section class="section project-case-studies">
+  <section class="section project-grid-section">
     <div class="container">
-      {projects.map((project, index) => {
-        const previewLabel =
-          project.previewVariant === "dashboard"
-            ? "Delivered to client — private system"
-            : project.previewVariant === "pseo"
-              ? "Private system — view available on request"
-              : "In design and development — briefing given on request";
+      <p class="mini-label">Featured</p>
+      <div class="project-grid project-grid--featured">
+        {featuredProjects.map((project) => <ProjectCard project={project} />)}
+      </div>
 
-        return (
-          <article
-            id={project.slug}
-            class:list={[
-              "project-case-study",
-              index % 2 === 1 && "project-case-study--reverse",
-            ]}
-          >
-            <div class="project-case-study__visual">
-              <ProjectPreview
-                variant={project.previewVariant}
-                label={previewLabel}
-              />
-            </div>
-
-            <div class="project-case-study__content">
-              <div class="project-case-study__meta">
-                <StatusBadge label={project.status} tone={project.accent} />
-                <span>{project.type}</span>
-              </div>
-
-              <h2>{project.title}</h2>
-
-              <p class="project-case-study__description">
-                {project.description}
-              </p>
-
-              <div>
-                <p class="mini-label">Technology and focus</p>
-                <div class="tag-list">
-                  {project.stack.map((item) => (
-                    <span class="tag">{item}</span>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <p class="mini-label">Key areas</p>
-
-                <ul class="feature-list">
-                  {project.features.map((feature) => (
-                    <li>{feature}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <p class="privacy-note">
-                <strong>Project note:</strong> {project.privacyNote}
-              </p>
-            </div>
-          </article>
-        );
-      })}
+      {otherProjects.length > 0 && (
+        <>
+          <p class="mini-label project-grid__more-label">More</p>
+          <div class="project-grid">
+            {otherProjects.map((project) => <ProjectCard project={project} />)}
+          </div>
+        </>
+      )}
     </div>
   </section>
 
   <ContactCTA />
 </BaseLayout>
+
+<style>
+  .project-grid-section {
+    padding-top: 2rem;
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.1rem;
+  }
+
+  .project-grid--featured {
+    margin-bottom: 3rem;
+  }
+
+  .project-grid__more-label {
+    margin-top: 0;
+  }
+
+  @media (max-width: 980px) {
+    .project-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .project-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

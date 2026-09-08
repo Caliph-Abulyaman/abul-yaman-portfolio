@@ -1,0 +1,137 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+import PageVisual from "../components/PageVisual.astro";
+import { journeyPhases } from "../data/learning-journey";
+---
+
+<BaseLayout
+  title="Learning Journey"
+  description="How Abul Yaman actually learned to build software — from self-taught CS fundamentals in grade 9 through CS50, CS75, Laravel, and a self-run DevOps and full-stack curriculum."
+>
+  <section class="page-hero section page-hero--journey">
+    <div class="container page-hero__grid">
+      <div class="page-hero__content">
+        <p class="eyebrow">Learning journey</p>
+        <h1>This wasn't a straight line, and it wasn't handed to me.</h1>
+        <p class="page-hero__lead">
+          Most of what's here was self-taught, starting years before any of it
+          was formally required. This page is the honest, chronological version
+          — including the free courses, the books, the dead ends, and the two
+          real production systems that everything since has been building
+          toward.
+        </p>
+      </div>
+
+      <div class="page-hero__visual">
+        <PageVisual variant="journey" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section journey-section">
+    <div class="container">
+      {journeyPhases.map((phase) => (
+        <div class="journey-phase">
+          <div class="journey-phase__header">
+            <span class="journey-phase__label">{phase.phaseLabel}</span>
+            <h2>{phase.phaseTitle}</h2>
+          </div>
+
+          <div class="journey-entries">
+            {phase.entries.map((entry) => (
+              <article class="journey-entry">
+                <div class="journey-entry__period">{entry.period}</div>
+                <div class="journey-entry__content">
+                  <h3>{entry.title}</h3>
+                  <p>{entry.detail}</p>
+                  {entry.tags && (
+                    <div class="tag-list">
+                      {entry.tags.map((tag) => (
+                        <span class="tag">{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <ContactCTA />
+</BaseLayout>
+
+<style>
+  .journey-section {
+    padding-top: 1rem;
+  }
+
+  .journey-phase {
+    margin-bottom: 4.5rem;
+  }
+
+  .journey-phase:last-child {
+    margin-bottom: 0;
+  }
+
+  .journey-phase__header {
+    margin-bottom: 1.8rem;
+  }
+
+  .journey-phase__label {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: var(--bronze);
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .journey-phase__header h2 {
+    margin-bottom: 0;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+  }
+
+  .journey-entries {
+    border-top: 1px solid var(--border);
+  }
+
+  .journey-entry {
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    gap: 2rem;
+    padding: 1.6rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .journey-entry__period {
+    padding-top: 0.2rem;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+
+  .journey-entry__content h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+  }
+
+  .journey-entry__content p {
+    max-width: 42rem;
+    margin-bottom: 0.85rem;
+    font-size: 0.87rem;
+    line-height: 1.68;
+  }
+
+  @media (max-width: 720px) {
+    .journey-entry {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+</style>
