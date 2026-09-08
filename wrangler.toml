@@ -23,12 +23,15 @@ pages_build_output_dir = "dist"
 binding = "AI"
 
 # --- KV namespace for the daily request cap counter ---
-# Create it first with:
+# Configure this binding in the Cloudflare dashboard for production
+# (Workers & Pages -> your Pages project -> Settings -> Functions ->
+# Bindings -> KV namespace). Create the namespace first if needed:
 #   wrangler kv namespace create ASSISTANT_KV
-# then paste the id it prints below.
-[[kv_namespaces]]
-binding = "ASSISTANT_KV"
-id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+#
+# Only uncomment the block below for local development with a real id:
+# [[kv_namespaces]]
+# binding = "ASSISTANT_KV"
+# id = "YOUR_REAL_KV_NAMESPACE_ID"
 
 # --- Contact form config ---
 # Plain (non-secret) var — who contact form submissions get sent to.
