@@ -104,7 +104,11 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   }
 };
 
-async function checkAndIncrementDailyCap(kv: KVNamespace): Promise<boolean> {
+async function checkAndIncrementDailyCap(kv: KVNamespace | undefined): Promise<boolean> {
+  // If the KV binding isn't configured yet, skip the cap check rather than
+  // erroring — the free-tier guard stays on the client side too.
+  if (!kv) return true;
+
   const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
   const key = `ask-count:${today}`;
 
